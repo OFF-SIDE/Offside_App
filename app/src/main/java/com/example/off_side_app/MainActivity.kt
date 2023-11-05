@@ -2,6 +2,7 @@ package com.example.off_side_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.example.off_side_app.databinding.ActivityMainBinding
 
@@ -17,6 +18,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainPageActivity1::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
     }
 
 }

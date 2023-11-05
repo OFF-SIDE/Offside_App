@@ -13,6 +13,9 @@
         android:theme="@style/Theme.OFFSIDE_App"
         tools:targetApi="31">
         <activity
+            android:name=".GroundActivity2"
+            android:exported="false" />
+        <activity
             android:name=".MainPageActivity1"
             android:exported="false" />
         <activity
