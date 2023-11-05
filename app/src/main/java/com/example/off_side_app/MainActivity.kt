@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.imageButton2.setOnClickListener{
-            val intent = Intent(this, MainPageActivity1::class.java)
+            val intent = Intent(this, GroundActivity2::class.java)
             startActivity(intent)
         }
     }
