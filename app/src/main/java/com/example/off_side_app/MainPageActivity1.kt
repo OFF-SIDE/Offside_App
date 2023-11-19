@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.databinding.ActivityMainPage1Binding
 
-class MainPageActivity1 : AppCompatActivity() {
+class MainPageActivity1 : AppCompatActivity(), Adapter.OnItemClickListener {
     private val binding by lazy {
         ActivityMainPage1Binding.inflate(layoutInflater)
     }
@@ -28,12 +28,6 @@ class MainPageActivity1 : AppCompatActivity() {
         // 어댑터 연결
         binding.recyclerView.adapter = adapter
 
-        binding.checkListButton.setOnClickListener {
-            var groundItems = AppDataManager.getOriginalGroundItems()
-            val listAsString = groundItems.joinToString("\n")
-            Toast.makeText(this, listAsString, Toast.LENGTH_SHORT).show()
-        }
-
         val groundActivityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
@@ -43,9 +37,42 @@ class MainPageActivity1 : AppCompatActivity() {
                 }
             }
 
+        adapter.setOnItemClickListener(object: Adapter.OnItemClickListener{
+            override fun onItemClick(groundItem: Ground, position: Int) {
+                val intent = Intent(this@MainPageActivity1, GroundActivity::class.java)
+                intent.putExtra("currentName", groundItem.name)
+                intent.putExtra("currentDes", groundItem.address)
+                intent.putExtra("currentImagePath", groundItem.imagePath)
+                intent.putExtra("currentDataListIdx", position)
+                groundActivityResultLauncher.launch(intent)
+                /*
+                Toast.makeText(binding.recyclerView.context,
+                    "${groundItem.name}\n${groundItem.address}\n${groundItem.imagePath.toString()}\n${position}",
+                    Toast.LENGTH_SHORT).show()
+                */
+            }
+        })
+
+        binding.checkListButton.setOnClickListener {
+            var groundItems = AppDataManager.getOriginalGroundItems()
+            val listAsString = groundItems.joinToString("\n")
+            Toast.makeText(this, listAsString, Toast.LENGTH_SHORT).show()
+        }
+
+
+
         binding.addGroundButton.setOnClickListener{
             val intent = Intent(this, GroundActivity::class.java)
             groundActivityResultLauncher.launch(intent)
         }
+    }
+
+    override fun onItemClick(groundItem: Ground, position: Int){
+        val intent = Intent(this, GroundActivity::class.java)
+        intent.putExtra("currentName", groundItem.name)
+        intent.putExtra("currentDes", groundItem.address)
+        intent.putExtra("currentImagePath", groundItem.imagePath)
+        intent.putExtra("currentListIdx", position)
+        startActivity(intent)
     }
 }
