@@ -1,4 +1,4 @@
-package com.example.off_side_app
+package com.example.off_side_app.data
 
 import android.net.Uri
 
@@ -6,6 +6,7 @@ data class Ground (
     var name: String?,
     var address: String?,
     var imagePath: Uri?,
+    var locationPosition: Int,
     var reservations: ArrayList<Reservation> = ArrayList(),
 )
 

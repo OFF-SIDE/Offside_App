@@ -5,6 +5,9 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
@@ -15,6 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
+import com.example.off_side_app.data.Ground
 import com.example.off_side_app.databinding.ActivityGroundBinding
 import java.util.Calendar
 
@@ -32,7 +36,9 @@ class GroundActivity : AppCompatActivity() {
         val currentDes = intent.getStringExtra("currentDes")
         val currentImagePath: Uri? = intent.getParcelableExtra("currentImagePath")
         val currentListIdx = intent.getIntExtra("currentDataListIdx", -1)
+        var currentPosition = intent.getIntExtra("currentLocationPosition", -1)
         var newFlag = false
+        var groundItems = AppDataManager.getOriginalGroundItems()
 
 
 
@@ -59,28 +65,51 @@ class GroundActivity : AppCompatActivity() {
             activityResult.launch(intent)
         }
 
+        val itemArray = AppDataManager.nearLocations
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemArray)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinner.adapter = adapter
+
+        if(!newFlag) {
+            currentPosition = groundItems[currentListIdx].locationPosition
+            binding.spinner.setSelection(currentPosition)
+        }
+
+
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
+                currentPosition = position
+                // 선택한 구에 대한 작업 수행
+                Toast.makeText(this@GroundActivity, currentPosition.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // 아무것도 선택되지 않았을 때의 동작
+                Toast.makeText(this@GroundActivity, "아무 것도 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.saveBtn.setOnClickListener {
             var adapter = Adapter()
 
             val name = binding.nameText.text.toString()
             val address = binding.addressText.text.toString()
 
-            var groundItems = AppDataManager.getOriginalGroundItems()
-
             // 이미지 선택 여부 확인
-            if (uri != null && name != null && address != null) {
-                if (newFlag)
-                    groundItems.add(Ground(name, address, uri))
-                else {
+            if (uri != null && name != null && address != null && currentPosition != -1) {
+                if(newFlag)
+                    groundItems.add(Ground(name, address, uri, currentPosition))
+                else{
                     groundItems[currentListIdx].name = name
                     groundItems[currentListIdx].address = address
                     groundItems[currentListIdx].imagePath = uri
+                    groundItems[currentListIdx].locationPosition = currentPosition
                 }
                 setResult(Activity.RESULT_OK)
                 finish()
             } else {
-                // 이미지가 선택되지 않은 경우
-                Toast.makeText(this, "내용을 모두 작성하세요", Toast.LENGTH_SHORT).show()
+                // 내용이 비어있는 경우
+                Toast.makeText(this, "내용을 모두 작성하세요.", Toast.LENGTH_SHORT).show()
             }
         }
 

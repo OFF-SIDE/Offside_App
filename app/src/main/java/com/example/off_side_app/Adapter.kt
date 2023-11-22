@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
+import com.example.off_side_app.data.Ground
 import com.example.off_side_app.databinding.RecyclerviewItemBinding
 
 

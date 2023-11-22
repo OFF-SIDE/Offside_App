@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.off_side_app.data.AppDataManager
+import com.example.off_side_app.data.Ground
 import com.example.off_side_app.databinding.ActivityMainPage1Binding
 
 class MainPageActivity1 : AppCompatActivity(), Adapter.OnItemClickListener {
@@ -44,6 +45,7 @@ class MainPageActivity1 : AppCompatActivity(), Adapter.OnItemClickListener {
                 intent.putExtra("currentDes", groundItem.address)
                 intent.putExtra("currentImagePath", groundItem.imagePath)
                 intent.putExtra("currentDataListIdx", position)
+                intent.putExtra("currentLocationPosition", groundItem.locationPosition)
                 groundActivityResultLauncher.launch(intent)
                 /*
                 Toast.makeText(binding.recyclerView.context,
