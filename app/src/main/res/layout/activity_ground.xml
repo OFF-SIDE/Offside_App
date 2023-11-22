@@ -27,103 +27,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            >
-
-            <ImageButton
-                android:id="@+id/imageButton13"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.864" />
-
-            <ImageButton
-                android:id="@+id/imageButton15"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="280dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.864" />
-
-            <ImageButton
-                android:id="@+id/imageButton14"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.864" />
-
-            <ImageButton
-                android:id="@+id/imageButton11"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="280dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton15"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton8"
-                app:layout_constraintVertical_bias="0.451" />
-
-            <ImageButton
-                android:id="@+id/imageButton12"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton14"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton9"
-                app:layout_constraintVertical_bias="0.44" />
-
-            <ImageButton
-                android:id="@+id/imageButton10"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton13"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton7"
-                app:layout_constraintVertical_bias="0.44" />
-
-            <ImageButton
-                android:id="@+id/imageButton7"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.459" />
-
-            <ImageButton
-                android:id="@+id/imageButton8"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageButton7"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.459" />
-
-            <ImageButton
-                android:id="@+id/imageButton9"
-                android:layout_width="110dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton7"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.459" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="375dp"
                 android:layout_height="140dp"
                 android:background="@drawable/rectangle23"
@@ -139,23 +47,23 @@
                     android:layout_width="375dp"
                     android:layout_height="70dp"
                     android:ems="10"
-                    android:hint="구장에 대한 설명을 작성하세요."
                     android:inputType="text"
+                    android:text="Name"
                     android:textSize="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/addressText"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
                     android:id="@+id/nameText"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:ems="10"
-                    android:hint="이름"
                     android:inputType="text"
+                    android:text="Name"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText5"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -167,15 +75,15 @@
                     android:id="@+id/addressText"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
+                    android:layout_marginBottom="68dp"
                     android:ems="10"
-                    android:hint="주소"
                     android:inputType="text"
+                    android:text="Name"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameText"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
@@ -184,8 +92,8 @@
                     android:layout_height="40dp"
                     android:layout_marginBottom="30dp"
                     android:ems="10"
-                    android:hint="대여비용(시간당)"
                     android:inputType="text"
+                    android:text="Name"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@+id/editTextText4"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -199,8 +107,8 @@
                     android:layout_width="140dp"
                     android:layout_height="30dp"
                     android:ems="10"
-                    android:hint="전화번호"
                     android:inputType="text"
+                    android:text="Name"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toTopOf="@+id/editTextText4"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -209,23 +117,320 @@
                     app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Button
-                android:id="@+id/groudSaveButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button"
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="375dp"
+                android:layout_height="160dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton13" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.769">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/hour6_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="6:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour7_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="7:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour8_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="8:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/hour9_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="9:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour10_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="10:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour11_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="11:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/hour12_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="12:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour13_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="13:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour14_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="14:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/hour15_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="15:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour16_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="16:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour17_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="17:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/hour18_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="18:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour19_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="19:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour20_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="20:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/hour21_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="21:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour22_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="22:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour23_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="23:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/hour0_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="00:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour1_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="1:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/hour2_btn"
+                            android:layout_width="115dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/buttonshape"
+                            android:text="2:00"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+            <Button
+                android:id="@+id/save_btn"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:background="@drawable/buttonshape"
+                android:text="저장"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/day_selectBtn"
+                android:layout_width="240dp"
+                android:layout_height="35dp"
+                android:background="@drawable/buttonshape"
+                android:text="날짜"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/pictureImageView"
             android:layout_width="263dp"
-            android:layout_height="198dp"
+            android:layout_height="158dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
@@ -240,12 +445,14 @@
             android:id="@+id/selectImageBtn"
             android:layout_width="100dp"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="52dp"
             android:text="사진 업로드"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/pictureImageView"
+            app:layout_constraintEnd_toEndOf="@+id/pictureImageView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/pictureImageView"
+            app:layout_constraintTop_toTopOf="@+id/pictureImageView"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

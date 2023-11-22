@@ -6,7 +6,7 @@ data class Ground (
     var name: String?,
     var address: String?,
     var imagePath: Uri?,
-    var reservations: ArrayList<Reservation> = ArrayList()
+    var reservations: ArrayList<Reservation> = ArrayList(),
 )
 
 data class Reservation(
