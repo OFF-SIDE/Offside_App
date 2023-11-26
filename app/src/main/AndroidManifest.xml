@@ -20,6 +20,15 @@
         android:theme="@style/Theme.OFFSIDE_App"
         tools:targetApi="31">
         <activity
+            android:name=".RefereeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReservationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserPhoneNumberActivity"
             android:exported="false" />
         <activity
@@ -32,7 +41,7 @@
             android:name=".GroundActivity"
             android:exported="false" />
         <activity
-            android:name=".MainPageActivity1"
+            android:name=".GroundMainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

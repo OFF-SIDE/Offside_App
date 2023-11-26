@@ -6,13 +6,15 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.off_side_app.Adapter.GroundMainAdapter
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.Ground
-import com.example.off_side_app.databinding.ActivityMainPage1Binding
+import com.example.off_side_app.databinding.ActivityGroundMainBinding
 
-class MainPageActivity1 : AppCompatActivity(), Adapter.OnItemClickListener {
+
+class GroundMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickListener {
     private val binding by lazy {
-        ActivityMainPage1Binding.inflate(layoutInflater)
+        ActivityGroundMainBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +25,7 @@ class MainPageActivity1 : AppCompatActivity(), Adapter.OnItemClickListener {
         binding.recyclerView.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.VERTICAL,false)
 
-        val adapter = Adapter()
+        val adapter = GroundMainAdapter()
         var groundItems = AppDataManager.getOriginalGroundItems()
 
         // 어댑터 연결
@@ -38,9 +40,9 @@ class MainPageActivity1 : AppCompatActivity(), Adapter.OnItemClickListener {
                 }
             }
 
-        adapter.setOnItemClickListener(object: Adapter.OnItemClickListener{
+        adapter.setOnItemClickListener(object: GroundMainAdapter.OnItemClickListener{
             override fun onItemClick(groundItem: Ground, position: Int) {
-                val intent = Intent(this@MainPageActivity1, GroundActivity::class.java)
+                val intent = Intent(this@GroundMainActivity, GroundActivity::class.java)
                 intent.putExtra("currentName", groundItem.name)
                 intent.putExtra("currentDes", groundItem.address)
                 intent.putExtra("currentImagePath", groundItem.imagePath)

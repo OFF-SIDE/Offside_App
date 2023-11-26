@@ -21,16 +21,17 @@ import com.example.off_side_app.Adapter.GroundMainAdapter
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.Ground
 import com.example.off_side_app.databinding.ActivityGroundBinding
+import com.example.off_side_app.databinding.ActivityReservationBinding
 import java.util.Calendar
 
-class GroundActivity : AppCompatActivity() {
+class ReservationActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityGroundBinding
+    lateinit var binding: ActivityReservationBinding
     private var uri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityGroundBinding.inflate(layoutInflater)
+        binding = ActivityReservationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val currentName = intent.getStringExtra("currentName")
@@ -40,8 +41,6 @@ class GroundActivity : AppCompatActivity() {
         var currentPosition = intent.getIntExtra("currentLocationPosition", -1)
         var newFlag = false
         var groundItems = AppDataManager.getOriginalGroundItems()
-
-
 
         if (currentName != null)
             binding.nameText.setText(currentName)
@@ -59,7 +58,6 @@ class GroundActivity : AppCompatActivity() {
                 .into(binding.pictureImageView)
         }
 
-
         binding.selectImageBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -67,51 +65,15 @@ class GroundActivity : AppCompatActivity() {
         }
 
         val itemArray = AppDataManager.nearLocations
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemArray)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = adapter
 
         if(!newFlag) {
             currentPosition = groundItems[currentListIdx].locationPosition
-            binding.spinner.setSelection(currentPosition)
         }
 
+        binding.spinner.setText(AppDataManager.nearLocations[currentPosition])
 
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
-                currentPosition = position
-                // 선택한 구에 대한 작업 수행
-                Toast.makeText(this@GroundActivity, currentPosition.toString(), Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // 아무것도 선택되지 않았을 때의 동작
-                Toast.makeText(this@GroundActivity, "아무 것도 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        binding.saveBtn.setOnClickListener {
-            var adapter = GroundMainAdapter()
-
-            val name = binding.nameText.text.toString()
-            val address = binding.addressText.text.toString()
-
-            // 이미지 선택 여부 확인
-            if (uri != null && name != null && address != null && currentPosition != -1) {
-                if(newFlag)
-                    groundItems.add(Ground(name, address, uri, currentPosition))
-                else{
-                    groundItems[currentListIdx].name = name
-                    groundItems[currentListIdx].address = address
-                    groundItems[currentListIdx].imagePath = uri
-                    groundItems[currentListIdx].locationPosition = currentPosition
-                }
-                setResult(Activity.RESULT_OK)
-                finish()
-            } else {
-                // 내용이 비어있는 경우
-                Toast.makeText(this, "내용을 모두 작성하세요.", Toast.LENGTH_SHORT).show()
-            }
+        binding.backBtn.setOnClickListener {
+            finish()
         }
 
         val dateButtonInfoMap = mutableMapOf<String, BooleanArray>()
@@ -127,28 +89,28 @@ class GroundActivity : AppCompatActivity() {
             val cal = Calendar.getInstance()
             val data = DatePickerDialog.OnDateSetListener { _, year, month, day -> val selectedDate = "${year}/${month + 1}/${day}"
                 binding.daySelectBtn.text = "${year}/${month+1}/${day}"
-            val buttonInfo = dateButtonInfoMap[selectedDate]
+                val buttonInfo = dateButtonInfoMap[selectedDate]
 
-            if (buttonInfo != null) {
-                // buttonInfo를 사용하여 원하는 작업 수행
-                for (i in buttonInfo.indices) {
-                    if (buttonInfo[i]) {
-                        // true일 경우 실행할 코드
-                        performTrueCase(i)
-                    } else {
-                        // false일 경우 실행할 코드
-                        performFalseCase(i)
+                if (buttonInfo != null) {
+                    // buttonInfo를 사용하여 원하는 작업 수행
+                    for (i in buttonInfo.indices) {
+                        if (buttonInfo[i]) {
+                            // true일 경우 실행할 코드
+                            performTrueCase(i)
+                        } else {
+                            // false일 경우 실행할 코드
+                            performFalseCase(i)
+                        }
                     }
+                } else {
+                    // 선택된 날짜에 대한 정보가 없을 경우의 처리
+                    Toast.makeText(this, "해당 날짜에 대한 정보가 없습니다.", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                // 선택된 날짜에 대한 정보가 없을 경우의 처리
-                Toast.makeText(this, "해당 날짜에 대한 정보가 없습니다.", Toast.LENGTH_SHORT).show()
+
             }
 
-        }
 
-
-        DatePickerDialog(
+            DatePickerDialog(
                 this,
                 data,
                 cal.get(Calendar.YEAR),

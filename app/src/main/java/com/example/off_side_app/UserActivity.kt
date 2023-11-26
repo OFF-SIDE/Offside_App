@@ -7,6 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.off_side_app.Adapter.GroundMainAdapter
 import com.example.off_side_app.databinding.ActivityUserBinding
 
 class UserActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class UserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val adapter = Adapter()
+        val adapter = GroundMainAdapter()
 
 
     }

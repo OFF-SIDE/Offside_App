@@ -2,6 +2,8 @@ package com.example.off_side_app.data
 
 import android.net.Uri
 
+
+data class Header(val locationPosition: Int)
 data class Ground (
     var name: String?,
     var address: String?,

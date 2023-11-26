@@ -1,19 +1,12 @@
 package com.example.off_side_app
 
-import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.databinding.ActivityMainBinding
-import java.math.BigInteger.TWO
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy{
@@ -25,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     ){
         // SubOne에서 결과를 받아옴
         if(it.resultCode == RESULT_OK){
-            val intent = Intent(this, MainPageActivity1::class.java)
+            val intent = Intent(this, GroundMainActivity::class.java)
             startActivity(intent)
         }
     }
@@ -35,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.imageButton2.setOnClickListener{
-            val intent = Intent(this, GroundActivity::class.java)
+            val intent = Intent(this, UserMainActivity::class.java)
             startActivity(intent)
         }
 
@@ -49,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 activityResultLauncher.launch(intent)
             }
             else{
-                val intent = Intent(this, MainPageActivity1::class.java)
+                val intent = Intent(this, GroundMainActivity::class.java)
                 startActivity(intent)
             }
         }
