@@ -5,10 +5,10 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.off_side_app.Adapter.GroundMainAdapter
 import com.example.off_side_app.data.AppDataManager
+import com.example.off_side_app.data.AppDataManager.reserve
 import com.example.off_side_app.data.Ground
 import com.example.off_side_app.databinding.ActivityGroundBinding
 import java.util.Calendar
@@ -55,6 +56,7 @@ class GroundActivity : AppCompatActivity() {
                 .error(R.drawable.baseline_error_24)
                 .into(binding.pictureImageView)
         }
+
 
         binding.selectImageBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
@@ -113,25 +115,27 @@ class GroundActivity : AppCompatActivity() {
             }
         }
 
-        val dateButtonInfoMap = mutableMapOf<String, BooleanArray>()
 
-        // 날짜 "2023/11/22"에 대한 21개의 버튼 정보를 true로 초기화
-        dateButtonInfoMap["2023/11/22"] = BooleanArray(24) { true }
+        val today = reserve["2023/11/26"]
 
-        // 날짜 "2023/11/23"에 대한 21개의 버튼 정보를 false로 초기화
-        dateButtonInfoMap["2023/11/23"] = BooleanArray(24) { false }
+        if (today != null) {
+            val hourIndex = 6
+            today.nameList[hourIndex] = "정한샘"
+            today.pnumList[hourIndex] = "010-9259-4719"
+            today.day[hourIndex] = true
+        }
 
         binding.daySelectBtn.setOnClickListener {
 
             val cal = Calendar.getInstance()
             val data = DatePickerDialog.OnDateSetListener { _, year, month, day -> val selectedDate = "${year}/${month + 1}/${day}"
                 binding.daySelectBtn.text = "${year}/${month+1}/${day}"
-            val buttonInfo = dateButtonInfoMap[selectedDate]
+            val rese = reserve[selectedDate]
 
-            if (buttonInfo != null) {
+            if (rese != null) {
                 // buttonInfo를 사용하여 원하는 작업 수행
-                for (i in buttonInfo.indices) {
-                    if (buttonInfo[i]) {
+                for (i in rese.day.indices) {
+                    if (rese.day[i]) {
                         // true일 경우 실행할 코드
                         performTrueCase(i)
                     } else {
@@ -156,7 +160,7 @@ class GroundActivity : AppCompatActivity() {
         }
     }
 
-    private fun performTrueCase(buttonIndex: Int) {
+    private fun performTrueCase(buttonIndex: Int, ) {
         // 여기에 true일 경우 실행할 코드를 작성하세요.
 
         val buttonId = resources.getIdentifier("hour${buttonIndex}_btn", "id", packageName)

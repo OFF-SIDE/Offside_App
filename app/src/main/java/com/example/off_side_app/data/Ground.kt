@@ -19,10 +19,17 @@ data class Ground (
     var name: String?,
     var address: String?,
     var imagePath: Uri?,
-    override var locationPosition: Int,
-): ListItem {
+    override var locationPosition: Int,): ListItem {
     override fun getType():Int {
         return ListItem.TYPE_GROUND
     }
 }
+
+data class Reserve(
+    val nameList: ArrayList<String>,
+    val pnumList: ArrayList<String>,
+    val day: BooleanArray = BooleanArray(24){false}
+)
+
+
 
