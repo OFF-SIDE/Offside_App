@@ -8,14 +8,14 @@ import com.example.off_side_app.R
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.Ground
 import com.example.off_side_app.data.Header
+import com.example.off_side_app.data.ListItem.Companion.TYPE_GROUND
+import com.example.off_side_app.data.ListItem.Companion.TYPE_HEADER
 import com.example.off_side_app.databinding.RecyclerviewHeaderBinding
 import com.example.off_side_app.databinding.RecyclerviewItemBinding
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 
 class GroundMainAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val TYPE_HEADER = 0
-    private val TYPE_ITEM = 1
-
     interface OnItemClickListener {
         fun onItemClick(groundItem: Ground, position: Int)
     }
@@ -28,8 +28,8 @@ class GroundMainAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         var groundItems = AppDataManager.getOriginalGroundItems()
-        return if (groundItems[position].locationPosition == groundItems.getOrNull(position - 1)?.locationPosition) {
-            TYPE_ITEM
+        return if (groundItems[position].getType() == TYPE_GROUND) {
+            TYPE_GROUND
         } else {
             TYPE_HEADER
         }
@@ -57,22 +57,30 @@ class GroundMainAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     // 뷰 홀더에 표시될 레이아웃 지정
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroundItemViewHolder {
-        val binding = RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return GroundItemViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if(viewType == TYPE_GROUND) {
+            val binding =
+                RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return GroundItemViewHolder(binding)
+        }
+        else{
+            val binding =
+                RecyclerviewHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return HeaderViewHolder(binding)
+        }
     }
 
     // 뷰 홀더에 데이터 바인딩
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        var groundItems = AppDataManager.getOriginalGroundItems()
         if(holder is HeaderViewHolder){
             // 고쳐야함
-            holder.bind()
+            holder.bind(groundItems[position] as Header)
         }
         else if (holder is GroundItemViewHolder){
-            var groundItems = AppDataManager.getOriginalGroundItems()
-            holder.bind(groundItems[position])
+            holder.bind(groundItems[position] as Ground)
             holder.itemView.setOnClickListener {
-                listener?.onItemClick(groundItems[position], position)
+                listener?.onItemClick(groundItems[position] as Ground, position)
             }
         }
     }

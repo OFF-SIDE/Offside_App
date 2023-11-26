@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     private val activityResultLauncher : ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){
-        // SubOne에서 결과를 받아옴
         if(it.resultCode == RESULT_OK){
             val intent = Intent(this, GroundMainActivity::class.java)
             startActivity(intent)

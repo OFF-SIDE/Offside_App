@@ -32,6 +32,9 @@
             android:name=".UserPhoneNumberActivity"
             android:exported="false" />
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".SubGroundActivity_A"
             android:exported="false" />
         <activity

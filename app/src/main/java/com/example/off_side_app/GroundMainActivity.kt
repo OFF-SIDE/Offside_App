@@ -26,7 +26,6 @@ class GroundMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickLis
             LinearLayoutManager.VERTICAL,false)
 
         val adapter = GroundMainAdapter()
-        var groundItems = AppDataManager.getOriginalGroundItems()
 
         // 어댑터 연결
         binding.recyclerView.adapter = adapter
@@ -34,7 +33,7 @@ class GroundMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickLis
         val groundActivityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
-                    // 다른 액티비티에서 결과를 받았을 때의 처리
+                    // GroundActivity에서 돌아왔을 때
                     val data: Intent? = result.data
                     adapter.notifyDataSetChanged()
                 }
@@ -49,22 +48,17 @@ class GroundMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickLis
                 intent.putExtra("currentDataListIdx", position)
                 intent.putExtra("currentLocationPosition", groundItem.locationPosition)
                 groundActivityResultLauncher.launch(intent)
-                /*
-                Toast.makeText(binding.recyclerView.context,
-                    "${groundItem.name}\n${groundItem.address}\n${groundItem.imagePath.toString()}\n${position}",
-                    Toast.LENGTH_SHORT).show()
-                */
             }
         })
 
+        // 디버깅용 버튼
         binding.checkListButton.setOnClickListener {
             var groundItems = AppDataManager.getOriginalGroundItems()
             val listAsString = groundItems.joinToString("\n")
             Toast.makeText(this, listAsString, Toast.LENGTH_SHORT).show()
         }
 
-
-
+        // 구장 추가 버튼
         binding.addGroundButton.setOnClickListener{
             val intent = Intent(this, GroundActivity::class.java)
             groundActivityResultLauncher.launch(intent)

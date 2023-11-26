@@ -24,7 +24,6 @@ import com.example.off_side_app.databinding.ActivityGroundBinding
 import java.util.Calendar
 
 class GroundActivity : AppCompatActivity() {
-
     lateinit var binding: ActivityGroundBinding
     private var uri: Uri? = null
 
@@ -40,8 +39,6 @@ class GroundActivity : AppCompatActivity() {
         var currentPosition = intent.getIntExtra("currentLocationPosition", -1)
         var newFlag = false
         var groundItems = AppDataManager.getOriginalGroundItems()
-
-
 
         if (currentName != null)
             binding.nameText.setText(currentName)
@@ -59,7 +56,6 @@ class GroundActivity : AppCompatActivity() {
                 .into(binding.pictureImageView)
         }
 
-
         binding.selectImageBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -75,7 +71,6 @@ class GroundActivity : AppCompatActivity() {
             currentPosition = groundItems[currentListIdx].locationPosition
             binding.spinner.setSelection(currentPosition)
         }
-
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
@@ -98,13 +93,17 @@ class GroundActivity : AppCompatActivity() {
 
             // 이미지 선택 여부 확인
             if (uri != null && name != null && address != null && currentPosition != -1) {
-                if(newFlag)
-                    groundItems.add(Ground(name, address, uri, currentPosition))
+                if(newFlag) {
+                    if(AppDataManager.isLocationExist(currentPosition)){
+                        groundItems.add(Ground(name, address, uri, currentPosition))
+                    }
+                }
                 else{
-                    groundItems[currentListIdx].name = name
-                    groundItems[currentListIdx].address = address
-                    groundItems[currentListIdx].imagePath = uri
-                    groundItems[currentListIdx].locationPosition = currentPosition
+                    val groundItem:Ground = groundItems[currentListIdx] as Ground
+                    groundItem.name = name
+                    groundItem.address = address
+                    groundItem.imagePath = uri
+                    groundItem.locationPosition = currentPosition
                 }
                 setResult(Activity.RESULT_OK)
                 finish()
@@ -147,7 +146,6 @@ class GroundActivity : AppCompatActivity() {
 
         }
 
-
         DatePickerDialog(
                 this,
                 data,
@@ -156,8 +154,6 @@ class GroundActivity : AppCompatActivity() {
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
-
-
     }
 
     private fun performTrueCase(buttonIndex: Int) {
