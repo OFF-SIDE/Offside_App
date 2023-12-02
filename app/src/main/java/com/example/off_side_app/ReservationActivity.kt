@@ -1,13 +1,9 @@
 package com.example.off_side_app
 
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
@@ -17,10 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.off_side_app.Adapter.GroundMainAdapter
 import com.example.off_side_app.data.AppDataManager
-import com.example.off_side_app.data.Ground
-import com.example.off_side_app.databinding.ActivityGroundBinding
 import com.example.off_side_app.databinding.ActivityReservationBinding
 import java.util.Calendar
 
@@ -43,12 +36,12 @@ class ReservationActivity : AppCompatActivity() {
         var groundItems = AppDataManager.getOriginalGroundItems()
 
         if (currentName != null)
-            binding.nameText.setText(currentName)
+            binding.userNameText.setText(currentName)
         else
             newFlag = true
 
         if (currentDes != null)
-            binding.addressText.setText(currentDes)
+            binding.userAddressText.setText(currentDes)
 
         if (currentImagePath != null) {
             uri = currentImagePath
@@ -58,23 +51,13 @@ class ReservationActivity : AppCompatActivity() {
                 .into(binding.pictureImageView)
         }
 
-        binding.selectImageBtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            activityResult.launch(intent)
-        }
-
         val itemArray = AppDataManager.nearLocations
 
         if(!newFlag) {
             currentPosition = groundItems[currentListIdx].locationPosition
         }
 
-        binding.spinner.setText(AppDataManager.nearLocations[currentPosition])
-
-        binding.backBtn.setOnClickListener {
-            finish()
-        }
+        binding.userLocation.setText(AppDataManager.nearLocations[currentPosition])
 
         val dateButtonInfoMap = mutableMapOf<String, BooleanArray>()
 

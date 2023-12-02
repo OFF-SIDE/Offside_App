@@ -48,7 +48,7 @@
                     android:layout_height="70dp"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Name"
+                    android:text="공지사항"
                     android:textSize="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
                     android:layout_height="40dp"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Name"
+                    android:text="이름"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText5"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -73,16 +73,15 @@
 
                 <EditText
                     android:id="@+id/addressText"
-                    android:layout_width="69dp"
-                    android:layout_height="35dp"
+                    android:layout_width="138dp"
+                    android:layout_height="32dp"
                     android:layout_marginBottom="68dp"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Name"
+                    android:text="전화번호"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/editTextText6"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintEnd_toStartOf="@+id/editTextText6" />
 
                 <EditText
                     android:id="@+id/editTextText5"
@@ -91,7 +90,7 @@
                     android:layout_marginBottom="30dp"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Name"
+                    android:text="가격"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@+id/editTextText4"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -102,11 +101,11 @@
 
                 <EditText
                     android:id="@+id/editTextText6"
-                    android:layout_width="140dp"
-                    android:layout_height="30dp"
+                    android:layout_width="142dp"
+                    android:layout_height="34dp"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Name"
+                    android:text="주소"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toTopOf="@+id/editTextText4"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -116,8 +115,8 @@
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:layout_width="165dp"
-                    android:layout_height="35dp"
+                    android:layout_width="95dp"
+                    android:layout_height="34dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
