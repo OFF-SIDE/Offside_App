@@ -12,7 +12,7 @@ import com.example.off_side_app.data.Ground
 import com.example.off_side_app.databinding.ActivityUserMainBinding
 
 
-class UserMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickListener {
+class UserMainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityUserMainBinding.inflate(layoutInflater)
     }
@@ -20,7 +20,7 @@ class UserMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        /*
         // 아이템을 가로로 하나씩 보여줌
         binding.recyclerView.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.VERTICAL,false)
@@ -74,8 +74,11 @@ class UserMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickListe
             val intent = Intent(this, RefereeActivity::class.java)
             startActivity(intent)
         }
+
+         */
     }
 
+    /*
     override fun onItemClick(groundItem: Ground, position: Int){
         val intent = Intent(this, GroundActivity::class.java)
         intent.putExtra("currentName", groundItem.name)
@@ -84,4 +87,5 @@ class UserMainActivity : AppCompatActivity(), GroundMainAdapter.OnItemClickListe
         intent.putExtra("currentListIdx", position)
         startActivity(intent)
     }
+     */
 }

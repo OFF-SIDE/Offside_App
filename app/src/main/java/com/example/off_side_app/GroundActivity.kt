@@ -17,10 +17,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.off_side_app.Adapter.GroundMainAdapter
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.AppDataManager.reserve
-import com.example.off_side_app.data.Ground
 import com.example.off_side_app.databinding.ActivityGroundBinding
 import java.util.Calendar
 
@@ -33,11 +31,12 @@ class GroundActivity : AppCompatActivity() {
         binding = ActivityGroundBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /*
         val currentName = intent.getStringExtra("currentName")
         val currentDes = intent.getStringExtra("currentDes")
         val currentImagePath: Uri? = intent.getParcelableExtra("currentImagePath")
         val currentListIdx = intent.getIntExtra("currentDataListIdx", -1)
-        var currentPosition = intent.getIntExtra("currentLocationPosition", -1)
+
         var newFlag = false
         var groundItems = AppDataManager.getOriginalGroundItems()
 
@@ -88,6 +87,8 @@ class GroundActivity : AppCompatActivity() {
         }
 
         binding.saveBtn.setOnClickListener {
+            // 기존의 구장이라면 수정, 신규 구장이라면 추가 api호출
+            /*
             var adapter = GroundMainAdapter()
 
             val name = binding.nameText.text.toString()
@@ -113,8 +114,20 @@ class GroundActivity : AppCompatActivity() {
                 // 내용이 비어있는 경우
                 Toast.makeText(this, "내용을 모두 작성하세요.", Toast.LENGTH_SHORT).show()
             }
+            */
         }
 
+         */
+         */
+
+        val currentStadiumId = intent.getIntExtra("stadiumId", -1)
+
+        if(currentStadiumId == -1){
+            // 신규 생성의 경우
+            binding.saveBtn.setOnClickListener {
+                
+            }
+        }
 
         val today = reserve["2023/11/26"]
 

@@ -1,9 +1,11 @@
 package com.example.off_side_app.Adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.off_side_app.GroundInfo
 import com.example.off_side_app.R
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.Ground
@@ -15,7 +17,10 @@ import com.example.off_side_app.databinding.RecyclerviewItemBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
 
 
-class GroundMainAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class GroundMainAdapter(val onClick: (Int?)->(Unit)) : RecyclerView.Adapter<GroundMainAdapter.GroundViewHolder>() {
+    private var items = listOf<GroundInfo>()
+
+    /*
     interface OnItemClickListener {
         fun onItemClick(groundItem: Ground, position: Int)
     }
@@ -85,9 +90,36 @@ class GroundMainAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    // 뷰 홀더의 개수 리턴
+     */
+    inner class GroundViewHolder(private val binding: RecyclerviewItemBinding):RecyclerView.ViewHolder(binding.root){
+        fun bind(ground: GroundInfo){
+            binding.nameText.text = ground.name
+            binding.descriptionText.text = ground.comment
+            Glide.with(binding.imageView)
+                .load(ground.image)
+                .error(R.drawable.baseline_error_24)
+                .into(binding.imageView)
+
+            binding.root.setOnClickListener {
+                // 리사이클러뷰 아이템에 클릭이벤트 발생
+                onClick(ground.stadiumId) // 생성자 파라미터로 받은 람다함수 onClick 실행
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroundViewHolder {
+        return GroundViewHolder(RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    }
+
+    override fun onBindViewHolder(holder: GroundViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
+
     override fun getItemCount(): Int {
-        var groundItems = AppDataManager.getOriginalGroundItems()
-        return groundItems.size
+        return items.size
+    }
+
+    fun setList(ground: List<GroundInfo>) {
+        items = ground
     }
 }
