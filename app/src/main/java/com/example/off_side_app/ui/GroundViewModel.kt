@@ -5,20 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.off_side_app.GroundInfo
+import com.example.off_side_app.GroundInfoForPost
 import com.example.off_side_app.repository.Repository
 import kotlinx.coroutines.launch
 
-class GroundMainViewModel: ViewModel() {
+class GroundViewModel: ViewModel() {
     private val repository = Repository()
 
     private val _result = MutableLiveData<List<GroundInfo>>()
     val result: LiveData<List<GroundInfo>>
         get() = _result
 
-    fun getGroundData(contactPhone: String, location: String) = viewModelScope.launch {
-        //Log.d("GroundMainViewModel", repository.getAllData().toString())
-        _result.value = repository.getGroundData(contactPhone, location)
+    fun postGroundData(groundInfoForPost: GroundInfoForPost) = viewModelScope.launch {
+        repository.postGroundData(groundInfoForPost)
     }
-
-
 }

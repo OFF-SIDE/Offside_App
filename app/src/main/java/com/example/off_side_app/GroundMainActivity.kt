@@ -42,7 +42,7 @@ class GroundMainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = groundMainAdapter
 
         // api 호출하여 뷰모델의 result 업데이트
-        viewModel.getAllData(contactPhone, location)
+        viewModel.getGroundData(contactPhone, location)
 
         /*
         // Q. onCreate 안에 observe가 있어도 이벤트가 전달되나?

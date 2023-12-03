@@ -43,12 +43,12 @@
                 app:layout_constraintVertical_bias="0.054">
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/commentText"
                     android:layout_width="375dp"
                     android:layout_height="70dp"
                     android:ems="10"
+                    android:hint="공지사항"
                     android:inputType="text"
-                    android:text="공지사항"
                     android:textSize="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -62,10 +62,10 @@
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:ems="10"
+                    android:hint="이름"
                     android:inputType="text"
-                    android:text="이름"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextText5"
+                    app:layout_constraintEnd_toEndOf="@+id/priceText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -77,22 +77,22 @@
                     android:layout_height="32dp"
                     android:layout_marginBottom="68dp"
                     android:ems="10"
+                    android:hint="주소"
                     android:inputType="text"
-                    android:text="전화번호"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/editTextText6" />
+                    app:layout_constraintEnd_toStartOf="@+id/contactPhoneText" />
 
                 <EditText
-                    android:id="@+id/editTextText5"
+                    android:id="@+id/priceText"
                     android:layout_width="175dp"
                     android:layout_height="40dp"
                     android:layout_marginBottom="30dp"
                     android:ems="10"
+                    android:hint="가격"
                     android:inputType="text"
-                    android:text="가격"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/editTextText4"
+                    app:layout_constraintBottom_toTopOf="@+id/commentText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -100,18 +100,18 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
-                    android:id="@+id/editTextText6"
+                    android:id="@+id/contactPhoneText"
                     android:layout_width="142dp"
                     android:layout_height="34dp"
                     android:ems="10"
+                    android:hint="전화번호"
                     android:inputType="text"
-                    android:text="주소"
                     android:textSize="10sp"
-                    app:layout_constraintBottom_toTopOf="@+id/editTextText4"
+                    app:layout_constraintBottom_toTopOf="@+id/commentText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+                    app:layout_constraintTop_toBottomOf="@+id/priceText" />
 
                 <Spinner
                     android:id="@+id/spinner"
