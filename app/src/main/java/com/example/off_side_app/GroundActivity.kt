@@ -138,6 +138,10 @@ class GroundActivity : AppCompatActivity() {
             if(currentStadiumId == -1){
                 // 신규 생성의 경우
                 if(checkContentsFull(binding, uri)){
+                    // 이미지 업로드
+
+
+                    // 서버에 데이터 post
                     val body = getBodyForPost(binding, currentPosition)
                     viewModel.postGroundData(body)
                 }

@@ -8,6 +8,7 @@ import com.example.off_side_app.GroundInfo
 import com.example.off_side_app.GroundInfoForPost
 import com.example.off_side_app.repository.Repository
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 
 class GroundViewModel: ViewModel() {
     private val repository = Repository()
@@ -18,5 +19,9 @@ class GroundViewModel: ViewModel() {
 
     fun postGroundData(groundInfoForPost: GroundInfoForPost) = viewModelScope.launch {
         repository.postGroundData(groundInfoForPost)
+    }
+
+    fun uploadImageData(image: MultipartBody.Part?) = viewModelScope.launch {
+        repository.uploadImageData(image)
     }
 }
