@@ -119,6 +119,7 @@ class GroundMainAdapter(val onClick: (Int?)->(Unit)) : RecyclerView.Adapter<Grou
         return items.size
     }
 
+    //
     fun setList(ground: List<GroundInfo>) {
         items = ground
     }

@@ -3,6 +3,7 @@ package com.example.off_side_app.data
 import com.example.off_side_app.data.AppDataManager.groundItems
 
 object AppDataManager {
+    var phoneNumber: String? = ""
     var reserve = mutableMapOf<String, Reserve>()
     private var groundItems = ArrayList<ListItem>()
     val nearLocations = listOf(

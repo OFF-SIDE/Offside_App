@@ -2,6 +2,7 @@ package com.example.off_side_app.network
 
 import com.example.off_side_app.GroundInfo
 import com.example.off_side_app.GroundInfoForPost
+import okhttp3.Call
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -24,7 +25,7 @@ interface AddGroundApi {
 interface UploadImageApi{
     @Multipart
     @POST("image")
-    fun uploadImage(
-        @Part file: MultipartBody.Part?
+    suspend fun uploadImage(
+        @Part file: MultipartBody.Part
     ) : String
 }

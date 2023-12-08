@@ -17,7 +17,11 @@ class GroundMainViewModel: ViewModel() {
 
     fun getGroundData(contactPhone: String, location: String) = viewModelScope.launch {
         //Log.d("GroundMainViewModel", repository.getAllData().toString())
-        _result.value = repository.getGroundData(contactPhone, location)
+        try{
+            _result.value = repository.getGroundData(contactPhone, location)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 

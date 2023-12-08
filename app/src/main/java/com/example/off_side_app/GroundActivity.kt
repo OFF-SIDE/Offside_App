@@ -3,6 +3,7 @@ package com.example.off_side_app
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,23 +17,34 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.AppDataManager.reserve
+import com.example.off_side_app.data.ImageUtil
 import com.example.off_side_app.databinding.ActivityGroundBinding
 import com.example.off_side_app.ui.GroundMainViewModel
 import com.example.off_side_app.ui.GroundViewModel
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 import java.util.Calendar
 
 class GroundActivity : AppCompatActivity() {
     lateinit var binding: ActivityGroundBinding
     private var uri: Uri? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGroundBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         /*
         val currentName = intent.getStringExtra("currentName")
@@ -61,8 +73,7 @@ class GroundActivity : AppCompatActivity() {
 
          */
 
-
-
+        /*
         binding.saveBtn.setOnClickListener {
             // 기존의 구장이라면 수정, 신규 구장이라면 추가 api호출
             /*
@@ -94,6 +105,8 @@ class GroundActivity : AppCompatActivity() {
             */
         }
 
+         */
+
         val viewModel = ViewModelProvider(this)[GroundViewModel::class.java]
 
         val currentStadiumId = intent.getIntExtra("stadiumId", -1)
@@ -119,7 +132,6 @@ class GroundActivity : AppCompatActivity() {
 
         binding.spinner.setSelection(currentPosition)
 
-
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
                 currentPosition = position
@@ -139,11 +151,30 @@ class GroundActivity : AppCompatActivity() {
                 // 신규 생성의 경우
                 if(checkContentsFull(binding, uri)){
                     // 이미지 업로드
+                    //val multipartBody = ImageUtil.getImageMultipartBody(this, uri)
+                    val filePath = ImageUtil.absolutelyPath(uri, this)
+                    val file = File(filePath)
+                    val requestFile = value.toRequestBody("image/*".toMediaTypeOrNull(), file)
+                    val multipartBody = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
+                    //requestPermission()
 
-                    // 서버에 데이터 post
-                    val body = getBodyForPost(binding, currentPosition)
-                    viewModel.postGroundData(body)
+                    viewModel.uploadImageData(multipartBody)
+
+                    var serverUrl:String = ""
+                    viewModel.image.observe(this, Observer{ notice ->
+                        serverUrl = notice
+                    })
+
+                    try {
+                        // 서버에 데이터 post
+                        val body = getBodyForPost(binding, currentPosition, serverUrl!!)
+                        viewModel.postGroundData(body)
+                    }
+                    catch (e: Exception){
+                        e.printStackTrace()
+                    }
+
                 }
             }
         }
@@ -179,7 +210,6 @@ class GroundActivity : AppCompatActivity() {
                 // 선택된 날짜에 대한 정보가 없을 경우의 처리
                 Toast.makeText(this, "해당 날짜에 대한 정보가 없습니다.", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         DatePickerDialog(
@@ -206,14 +236,16 @@ class GroundActivity : AppCompatActivity() {
         return true
     }
 
-    fun getBodyForPost(binding: ActivityGroundBinding, currentPosition: Int): GroundInfoForPost{
-        lateinit var groundInfoForPost: GroundInfoForPost
-        groundInfoForPost.address = binding.addressText.text.toString()
-        groundInfoForPost.comment = binding.commentText.text.toString()
-        groundInfoForPost.contactPhone = binding.contactPhoneText.text.toString()
-        groundInfoForPost.location = AppDataManager.nearLocations[currentPosition]
-        groundInfoForPost.price = binding.priceText.text.toString().toInt()
-        groundInfoForPost.name = binding.nameText.text.toString()
+    fun getBodyForPost(binding: ActivityGroundBinding, currentPosition: Int, serverUrl: String): GroundInfoForPost{
+        var groundInfoForPost = GroundInfoForPost(
+            AppDataManager.nearLocations[currentPosition],
+            binding.nameText.text.toString(),
+            binding.contactPhoneText.text.toString(),
+            binding.addressText.text.toString(),
+            binding.commentText.text.toString(),
+            binding.priceText.text.toString().toInt(),
+            serverUrl
+        )
         return groundInfoForPost
     }
 
@@ -228,6 +260,7 @@ class GroundActivity : AppCompatActivity() {
             getbookingDialog(name, phonenumeber)
         }
     }
+
 
     // false일 경우 실행할 코드
     private fun performFalseCase(buttonIndex: Int) {

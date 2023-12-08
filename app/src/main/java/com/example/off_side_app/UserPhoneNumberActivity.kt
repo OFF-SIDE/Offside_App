@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.databinding.ActivityUserPhoneNumberBinding
 
 class UserPhoneNumberActivity : AppCompatActivity() {
@@ -26,6 +27,8 @@ class UserPhoneNumberActivity : AppCompatActivity() {
                 editor.putString("phoneNumber", number)
 
                 editor.commit() // data 저장!
+
+                AppDataManager.phoneNumber = number
 
                 val intent = Intent(this, MainActivity::class.java)
                 setResult(RESULT_OK, intent)

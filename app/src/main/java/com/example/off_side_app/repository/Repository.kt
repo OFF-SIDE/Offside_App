@@ -4,7 +4,6 @@ import com.example.off_side_app.GroundInfoForPost
 import com.example.off_side_app.network.AddGroundApi
 import com.example.off_side_app.network.GroundApi
 import com.example.off_side_app.network.RetrofitInstance
-import com.example.off_side_app.network.RetrofitInstance.client
 import com.example.off_side_app.network.UploadImageApi
 import okhttp3.MultipartBody
 
@@ -15,5 +14,5 @@ class Repository {
 
     suspend fun getGroundData(contactPhone: String, location: String) = getClient.getGroundInfo(contactPhone, location)
     suspend fun postGroundData(groundInfoForPost: GroundInfoForPost) = postClient.postGroundInfo(groundInfoForPost)
-    suspend fun uploadImageData(image: MultipartBody.Part?) = imageClient.uploadImage(image)
+    suspend fun uploadImageData(image: MultipartBody.Part) = imageClient.uploadImage(image)
 }
