@@ -1,14 +1,13 @@
 package com.example.off_side_app.data
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
 data class GroundInfo(
-    @SerialName(value = "stadiumId")
+    @SerializedName(value = "id")
     val stadiumId: Int?,
     val location: String?,
-    @SerialName(value = "contactPhone")
     val contactPhone: String?,
     val name: String?,
     val address: String?,
@@ -32,10 +31,8 @@ data class ImageUrl(
 )
 
 data class GroundInfoWithAvailableTime(
-    @SerialName(value = "stadiumId")
     val stadiumId: Int?,
     val location: String?,
-    @SerialName(value = "contactPhone")
     val contactPhone: String?,
     val name: String?,
     val address: String?,
@@ -43,4 +40,9 @@ data class GroundInfoWithAvailableTime(
     val price: Int?,
     val image: String?,
     val availableTime: List<String>
+)
+
+data class GroundInfoGroup(
+    val location : String,
+    val groupedGround : MutableList<GroundInfo>
 )

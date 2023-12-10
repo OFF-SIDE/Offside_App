@@ -2,19 +2,18 @@ package com.example.off_side_app
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.off_side_app.Adapter.GroundMainAdapter
+import com.example.off_side_app.Adapter.GroundMainItemAdapter
 import com.example.off_side_app.data.AppDataManager
-import com.example.off_side_app.data.Ground
+import com.example.off_side_app.data.GroundInfo
+import com.example.off_side_app.data.GroundInfoGroup
 import com.example.off_side_app.databinding.ActivityGroundMainBinding
 import com.example.off_side_app.ui.GroundMainViewModel
-
 
 class GroundMainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -26,8 +25,9 @@ class GroundMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val contactPhone = ""
-        val location = "마포구"
+        var contactPhone = ""
+        //contactPhone = AppDataManager.phoneNumber!!
+        val location = ""
         val viewModel = ViewModelProvider(this)[GroundMainViewModel::class.java]
 
         // 아이템을 가로로 하나씩 보여줌
@@ -46,15 +46,17 @@ class GroundMainActivity : AppCompatActivity() {
         viewModel.getGroundData(contactPhone, location)
 
         // Q. onCreate 안에 observe가 있어도 이벤트가 전달되나?
-        viewModel.result.observe(this, Observer{ notice ->
-            groundMainAdapter.setList(notice)
+        viewModel.result.observe(this){ notice ->
+            val convertedgroup = DivideGroup(notice)
+            groundMainAdapter.setList(convertedgroup)
             groundMainAdapter.notifyDataSetChanged()
-        })
+        }
 
         var swipe = findViewById<SwipeRefreshLayout>(R.id.swipe)
         swipe.setOnRefreshListener {
             viewModel.getGroundData(contactPhone, location)
-            groundMainAdapter.setList(viewModel.result.value!!)
+            val convertedgroup = DivideGroup(viewModel.result.value!!)
+            groundMainAdapter.setList(convertedgroup)
             groundMainAdapter.notifyDataSetChanged()
             swipe.isRefreshing = false
         }
@@ -70,8 +72,26 @@ class GroundMainActivity : AppCompatActivity() {
 
         // 구장 추가 버튼
         binding.addGroundButton.setOnClickListener{
-            val intent = Intent(this, GroundActivity::class.java)
+            val intent = Intent(this, GroundRegisterActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    fun DivideGroup(items: List<GroundInfo>): MutableList<GroundInfoGroup>{
+        val groupedItems = mutableListOf<GroundInfoGroup>()
+        for (location in AppDataManager.nearLocations){
+            val groupedItem = GroundInfoGroup(
+                location,
+                mutableListOf<GroundInfo>()
+            )
+            for (item in items){
+                if(item.location == location){
+                    groupedItem.groupedGround.add(item)
+                }
+            }
+            if(!groupedItem.groupedGround.isEmpty())
+                groupedItems.add(groupedItem)
+        }
+        return groupedItems
     }
 }

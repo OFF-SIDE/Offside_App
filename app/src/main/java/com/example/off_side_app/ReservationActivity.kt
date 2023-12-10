@@ -12,9 +12,13 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.databinding.ActivityReservationBinding
+import com.example.off_side_app.ui.GroundViewModel
+import com.example.off_side_app.ui.LoadingDialog
 import java.util.Calendar
 
 class ReservationActivity : AppCompatActivity() {
@@ -27,37 +31,40 @@ class ReservationActivity : AppCompatActivity() {
         binding = ActivityReservationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val currentName = intent.getStringExtra("currentName")
-        val currentDes = intent.getStringExtra("currentDes")
-        val currentImagePath: Uri? = intent.getParcelableExtra("currentImagePath")
-        val currentListIdx = intent.getIntExtra("currentDataListIdx", -1)
-        var currentPosition = intent.getIntExtra("currentLocationPosition", -1)
-        var newFlag = false
-        var groundItems = AppDataManager.getOriginalGroundItems()
+        val viewModel = ViewModelProvider(this)[GroundViewModel::class.java]
 
-        if (currentName != null)
-            binding.userNameText.setText(currentName)
-        else
-            newFlag = true
+        val currentStadiumId = intent.getIntExtra("stadiumId", -1)
 
-        if (currentDes != null)
-            binding.userAddressText.setText(currentDes)
+        viewModel.getGroundDetailData(currentStadiumId, 1210)  // 오늘 날짜로
+        val dialog = LoadingDialog(this@ReservationActivity)
 
-        if (currentImagePath != null) {
-            uri = currentImagePath
-            Glide.with(this)
-                .load(uri)
-                .error(R.drawable.baseline_error_24)
-                .into(binding.pictureImageView)
+        dialog.show()
+
+        viewModel.detail.observe(this) { notice ->
+            val groundInfo = notice
+            try {
+                // 1. 이미지
+                Glide.with(binding.pictureImageView)
+                    .load(groundInfo.image)
+                    .error(R.drawable.baseline_error_24)
+                    .into(binding.pictureImageView)
+
+                // 2. 이름
+                binding.userNameText.setText(groundInfo.name)
+                binding.userPhoneText.setText(groundInfo.contactPhone)
+                binding.userAddressText.setText(groundInfo.address)
+                binding.userInfoText.setText(groundInfo.comment)
+                binding.userPrice.setText(groundInfo.price!!.toString())
+            }
+            catch (e: Exception){
+                e.printStackTrace()
+            }
+            dialog.dismiss()
         }
 
-        val itemArray = AppDataManager.nearLocations
-
-        if(!newFlag) {
-            currentPosition = groundItems[currentListIdx].locationPosition
+        binding.reservationBackBtn.setOnClickListener {
+            finish()
         }
-
-        binding.userLocation.setText(AppDataManager.nearLocations[currentPosition])
 
         val dateButtonInfoMap = mutableMapOf<String, BooleanArray>()
 

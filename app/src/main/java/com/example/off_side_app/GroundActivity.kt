@@ -96,7 +96,7 @@ class GroundActivity : AppCompatActivity() {
                     binding.contactPhoneText.setText(groundInfo.contactPhone)
                     binding.addressText.setText(groundInfo.address)
                     binding.commentText.setText(groundInfo.comment)
-                    binding.priceText.setText(groundInfo.price!!)
+                    binding.priceText.setText(groundInfo.price!!.toString())
                     //currentPosition = groundInfo.location
                 }
                 catch (e: Exception){
@@ -140,6 +140,9 @@ class GroundActivity : AppCompatActivity() {
                     })
                 }
             }
+        }
+        binding.backBtn.setOnClickListener {
+            finish()
         }
 
         val today = reserve["2023/11/26"]
@@ -271,7 +274,6 @@ class GroundActivity : AppCompatActivity() {
                 .into(binding.pictureImageView)
         }
     }
-
 }
 
 
