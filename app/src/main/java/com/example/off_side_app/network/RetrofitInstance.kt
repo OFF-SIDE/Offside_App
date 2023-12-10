@@ -1,24 +1,48 @@
 package com.example.off_side_app.network
 
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitInstance {
-    val BASE_URL = "http://3.34.126.188:8080/"
+    val BASE_URL = "http://13.209.73.252:8080/"
 
+    /*
     val gson : Gson = GsonBuilder()
         .setLenient()
         .create()
 
-    val client = Retrofit
+
+     */
+
+    val client = OkHttpClient.Builder()
+        .addInterceptor { chain ->
+            val request = chain.request()
+            val response = chain.proceed(request)
+
+            // 서버 응답 로그 출력
+            val responseBody = response.body?.string()
+            Log.d("ServerResponse", responseBody ?: "Empty response body")
+
+            response.newBuilder()
+                .body(responseBody?.toResponseBody(response.body?.contentType()))
+                .build()
+        }
+        .build()
+
+    val retrofit = Retrofit
         .Builder()
         .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .client(client)
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     fun getInstance(): Retrofit {
-        return client
+        return retrofit
     }
 }

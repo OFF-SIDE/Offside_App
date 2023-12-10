@@ -72,7 +72,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0") // retrofit
     implementation("com.squareup.retrofit2:converter-gson:2.9.0") // GsonConverter
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-
+    implementation("com.squareup.retrofit2:converter-scalars:2.1.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0") // 새로고침
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     debugImplementation("androidx.compose.ui:ui-tooling")
 

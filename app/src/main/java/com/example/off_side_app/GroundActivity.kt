@@ -1,9 +1,7 @@
 package com.example.off_side_app
 
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,21 +15,19 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.AppDataManager.reserve
+import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.ImageUtil
 import com.example.off_side_app.databinding.ActivityGroundBinding
-import com.example.off_side_app.ui.GroundMainViewModel
 import com.example.off_side_app.ui.GroundViewModel
-import okhttp3.MediaType
+import com.example.off_side_app.ui.LoadingDialog
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.util.Calendar
 
@@ -44,68 +40,6 @@ class GroundActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGroundBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        /*
-        val currentName = intent.getStringExtra("currentName")
-        val currentDes = intent.getStringExtra("currentDes")
-        val currentImagePath: Uri? = intent.getParcelableExtra("currentImagePath")
-        val currentListIdx = intent.getIntExtra("currentDataListIdx", -1)
-
-        var newFlag = false
-        var groundItems = AppDataManager.getOriginalGroundItems()
-
-        if (currentName != null)
-            binding.nameText.setText(currentName)
-        else
-            newFlag = true
-
-        if (currentDes != null)
-            binding.addressText.setText(currentDes)
-
-        if (currentImagePath != null) {
-            uri = currentImagePath
-            Glide.with(this)
-                .load(uri)
-                .error(R.drawable.baseline_error_24)
-                .into(binding.pictureImageView)
-        }
-
-         */
-
-        /*
-        binding.saveBtn.setOnClickListener {
-            // 기존의 구장이라면 수정, 신규 구장이라면 추가 api호출
-            /*
-            var adapter = GroundMainAdapter()
-
-            val name = binding.nameText.text.toString()
-            val address = binding.addressText.text.toString()
-
-            // 이미지 선택 여부 확인
-            if (uri != null && name != null && address != null && currentPosition != -1) {
-                if(newFlag) {
-                    if(AppDataManager.isLocationExist(currentPosition)){
-                        groundItems.add(Ground(name, address, uri, currentPosition))
-                    }
-                }
-                else{
-                    val groundItem:Ground = groundItems[currentListIdx] as Ground
-                    groundItem.name = name
-                    groundItem.address = address
-                    groundItem.imagePath = uri
-                    groundItem.locationPosition = currentPosition
-                }
-                setResult(Activity.RESULT_OK)
-                finish()
-            } else {
-                // 내용이 비어있는 경우
-                Toast.makeText(this, "내용을 모두 작성하세요.", Toast.LENGTH_SHORT).show()
-            }
-            */
-        }
-
-         */
 
         val viewModel = ViewModelProvider(this)[GroundViewModel::class.java]
 
@@ -125,10 +59,6 @@ class GroundActivity : AppCompatActivity() {
         binding.spinner.adapter = adapter
         // 신규 생성의 경우 location의 position=0
         var currentPosition = 0
-        if(currentStadiumId != -1){
-            // 기존에 있는 경우 api에 받은 location값으로 할당
-            currentPosition = 1
-        }
 
         binding.spinner.setSelection(currentPosition)
 
@@ -145,6 +75,37 @@ class GroundActivity : AppCompatActivity() {
             }
         }
 
+        if(currentStadiumId != -1){
+            // 기존 구장의 경우 기존 정보로 텍스트 채우기
+            viewModel.getGroundDetailData(currentStadiumId, 1210)  // 오늘 날짜로
+            val dialog = LoadingDialog(this@GroundActivity)
+
+            dialog.show()
+
+            viewModel.detail.observe(this, Observer{ notice ->
+                val groundInfo = notice
+                try {
+                    // 1. 이미지
+                    Glide.with(binding.pictureImageView)
+                        .load(groundInfo.image)
+                        .error(R.drawable.baseline_error_24)
+                        .into(binding.pictureImageView)
+
+                    // 2. 이름
+                    binding.nameText.setText(groundInfo.name)
+                    binding.contactPhoneText.setText(groundInfo.contactPhone)
+                    binding.addressText.setText(groundInfo.address)
+                    binding.commentText.setText(groundInfo.comment)
+                    binding.priceText.setText(groundInfo.price!!)
+                    //currentPosition = groundInfo.location
+                }
+                catch (e: Exception){
+                    e.printStackTrace()
+                }
+                dialog.dismiss()
+            })
+        }
+
 
         binding.saveBtn.setOnClickListener {
             if(currentStadiumId == -1){
@@ -154,27 +115,29 @@ class GroundActivity : AppCompatActivity() {
                     //val multipartBody = ImageUtil.getImageMultipartBody(this, uri)
                     val filePath = ImageUtil.absolutelyPath(uri, this)
                     val file = File(filePath)
-                    val requestFile = value.toRequestBody("image/*".toMediaTypeOrNull(), file)
+
+                    val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
                     val multipartBody = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                    //requestPermission()
-
                     viewModel.uploadImageData(multipartBody)
+                    val dialog = LoadingDialog(this@GroundActivity)
+
+                    dialog.show()
 
                     var serverUrl:String = ""
                     viewModel.image.observe(this, Observer{ notice ->
                         serverUrl = notice
+                        try {
+                            // 서버에 데이터 post
+                            val body = getBodyForPost(binding, currentPosition, serverUrl!!)
+                            viewModel.postGroundData(body)
+                        }
+                        catch (e: Exception){
+                            e.printStackTrace()
+                        }
+                        dialog.dismiss()
+                        finish()
                     })
-
-                    try {
-                        // 서버에 데이터 post
-                        val body = getBodyForPost(binding, currentPosition, serverUrl!!)
-                        viewModel.postGroundData(body)
-                    }
-                    catch (e: Exception){
-                        e.printStackTrace()
-                    }
-
                 }
             }
         }
@@ -236,7 +199,7 @@ class GroundActivity : AppCompatActivity() {
         return true
     }
 
-    fun getBodyForPost(binding: ActivityGroundBinding, currentPosition: Int, serverUrl: String): GroundInfoForPost{
+    fun getBodyForPost(binding: ActivityGroundBinding, currentPosition: Int, serverUrl: String): GroundInfoForPost {
         var groundInfoForPost = GroundInfoForPost(
             AppDataManager.nearLocations[currentPosition],
             binding.nameText.text.toString(),

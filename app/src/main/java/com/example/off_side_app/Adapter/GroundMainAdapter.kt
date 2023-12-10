@@ -1,20 +1,12 @@
 package com.example.off_side_app.Adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.off_side_app.GroundInfo
+import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.R
-import com.example.off_side_app.data.AppDataManager
-import com.example.off_side_app.data.Ground
-import com.example.off_side_app.data.Header
-import com.example.off_side_app.data.ListItem.Companion.TYPE_GROUND
-import com.example.off_side_app.data.ListItem.Companion.TYPE_HEADER
-import com.example.off_side_app.databinding.RecyclerviewHeaderBinding
 import com.example.off_side_app.databinding.RecyclerviewItemBinding
-import kotlinx.coroutines.NonDisposableHandle.parent
 
 
 class GroundMainAdapter(val onClick: (Int?)->(Unit)) : RecyclerView.Adapter<GroundMainAdapter.GroundViewHolder>() {

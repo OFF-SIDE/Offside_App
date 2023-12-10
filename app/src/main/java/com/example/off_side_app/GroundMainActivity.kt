@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.off_side_app.Adapter.GroundMainAdapter
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.Ground
@@ -44,51 +45,19 @@ class GroundMainActivity : AppCompatActivity() {
         // api 호출하여 뷰모델의 result 업데이트
         viewModel.getGroundData(contactPhone, location)
 
-        /*
-        // Q. onCreate 안에 observe가 있어도 이벤트가 전달되나?
-        viewModel.result.observe(this, Observer {
-            val customAdapter = GroundMainAdapter(this, it)
-            binding.recyclerView.adapter = customAdapter
-        })
-         */
-
         // Q. onCreate 안에 observe가 있어도 이벤트가 전달되나?
         viewModel.result.observe(this, Observer{ notice ->
             groundMainAdapter.setList(notice)
             groundMainAdapter.notifyDataSetChanged()
         })
 
-
-        /*
-        val adapter = GroundMainAdapter()
-
-        // 어댑터 연결
-        binding.recyclerView.adapter = adapter
-
-         */
-        /*
-        val groundActivityResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == RESULT_OK) {
-                    // GroundActivity에서 돌아왔을 때
-                    val data: Intent? = result.data
-                    adapter.notifyDataSetChanged()
-                }
-            }
-
-         */
-
-        /*
-        adapter.setOnItemClickListener(object: GroundMainAdapter.OnItemClickListener{
-            override fun onItemClick(groundItem: Ground, position: Int) {
-                val intent = Intent(this@GroundMainActivity, GroundActivity::class.java)
-                intent.putExtra("stadiumId", "")
-                //groundActivityResultLauncher.launch(intent)
-                startActivity(intent)
-            }
-        })
-         */
-
+        var swipe = findViewById<SwipeRefreshLayout>(R.id.swipe)
+        swipe.setOnRefreshListener {
+            viewModel.getGroundData(contactPhone, location)
+            groundMainAdapter.setList(viewModel.result.value!!)
+            groundMainAdapter.notifyDataSetChanged()
+            swipe.isRefreshing = false
+        }
 
         /*
         // 디버깅용 버튼
@@ -105,16 +74,4 @@ class GroundMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-    /*
-    override fun onItemClick(groundItem: Ground, position: Int){
-        val intent = Intent(this, GroundActivity::class.java)
-        intent.putExtra("currentName", groundItem.name)
-        intent.putExtra("currentDes", groundItem.address)
-        intent.putExtra("currentImagePath", groundItem.imagePath)
-        intent.putExtra("currentListIdx", position)
-        startActivity(intent)
-    }
-
-     */
 }

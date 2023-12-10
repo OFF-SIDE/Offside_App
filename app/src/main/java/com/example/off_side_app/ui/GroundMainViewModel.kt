@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.off_side_app.GroundInfo
+import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.repository.Repository
 import kotlinx.coroutines.launch
 

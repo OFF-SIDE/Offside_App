@@ -1,4 +1,4 @@
-package com.example.off_side_app
+package com.example.off_side_app.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -25,4 +25,22 @@ data class GroundInfoForPost(
     var comment: String?,
     var price: Int?,
     var image: String?
+)
+
+data class ImageUrl(
+    val fileUrl: String
+)
+
+data class GroundInfoWithAvailableTime(
+    @SerialName(value = "stadiumId")
+    val stadiumId: Int?,
+    val location: String?,
+    @SerialName(value = "contactPhone")
+    val contactPhone: String?,
+    val name: String?,
+    val address: String?,
+    val comment: String?,
+    val price: Int?,
+    val image: String?,
+    val availableTime: List<String>
 )
