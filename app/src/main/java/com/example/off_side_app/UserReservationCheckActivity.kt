@@ -26,7 +26,7 @@ class UserReservationCheckActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var userPhone = ""
+        var userPhone = "01033333333"
         val viewModel = ViewModelProvider(this)[UserReservationCheckViewModel::class.java]
 
         // 아이템을 가로로 하나씩 보여줌

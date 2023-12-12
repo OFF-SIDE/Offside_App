@@ -8,7 +8,7 @@ import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.R
 import com.example.off_side_app.databinding.GroundRecyclerviewItemBinding
 
-class GroundMainItemAdapter(val onClick: (Int?)->(Unit), val items: List<GroundInfo>) : RecyclerView.Adapter<GroundMainItemAdapter.GroundItemViewHolder>() {
+class GroundMainItemAdapter(val onClick: (Int?, String)->(Unit), val items: List<GroundInfo>) : RecyclerView.Adapter<GroundMainItemAdapter.GroundItemViewHolder>() {
 
     inner class GroundItemViewHolder(private val binding: GroundRecyclerviewItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(ground: GroundInfo){
@@ -21,7 +21,7 @@ class GroundMainItemAdapter(val onClick: (Int?)->(Unit), val items: List<GroundI
 
             binding.root.setOnClickListener {
                 // 리사이클러뷰 아이템에 클릭이벤트 발생
-                onClick(ground.stadiumId) // 생성자 파라미터로 받은 람다함수 onClick 실행
+                onClick(ground.stadiumId, ground.externalUrl) // 생성자 파라미터로 받은 람다함수 onClick 실행
             }
         }
     }

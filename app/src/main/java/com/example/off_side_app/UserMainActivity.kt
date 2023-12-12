@@ -32,8 +32,13 @@ class UserMainActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL,false)
 
         // 어댑터 할당
-        groundMainAdapter = GroundMainAdapter{ stadiumId->
-            val intent = Intent(this@UserMainActivity, ReservationActivity::class.java)
+        groundMainAdapter = GroundMainAdapter{ stadiumId, externalUrl: String->
+            val intent: Intent
+            if(externalUrl == "")
+                intent = Intent(this@UserMainActivity, ReservationActivity::class.java)
+            else
+                intent = Intent(this@UserMainActivity, ExternalGroundActivity::class.java)
+
             intent.putExtra("stadiumId", stadiumId)
             startActivity(intent)
         }

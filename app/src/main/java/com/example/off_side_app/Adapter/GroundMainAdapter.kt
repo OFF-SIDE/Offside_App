@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.off_side_app.data.GroundInfoGroup
 import com.example.off_side_app.databinding.GroundRecyclerviewHeaderBinding
-class GroundMainAdapter(val onClick: (Int?)->(Unit)) : RecyclerView.Adapter<GroundMainAdapter.GroundViewHolder>() {
+class GroundMainAdapter(val onClick: (Int?, String)->(Unit)) : RecyclerView.Adapter<GroundMainAdapter.GroundViewHolder>() {
     private var items = listOf<GroundInfoGroup>()
 
     inner class GroundViewHolder(private val binding: GroundRecyclerviewHeaderBinding):RecyclerView.ViewHolder(binding.root){

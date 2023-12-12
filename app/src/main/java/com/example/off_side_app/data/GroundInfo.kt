@@ -13,7 +13,8 @@ data class GroundInfo(
     val address: String?,
     val comment: String?,
     val price: Int?,
-    val image: String?
+    val image: String?,
+    val externalUrl: String
 )
 
 data class GroundInfoForPost(
@@ -48,7 +49,7 @@ data class GroundInfoGroup(
 )
 
 data class ReservedGroundInfo(
-    val groundInfo: GroundInfo,
+    val groundInfo: GroundInfoForList,
     val date: String,
     val time: String,
     val userName: String,
@@ -58,4 +59,16 @@ data class ReservedGroundInfo(
 data class ReservedGroundInfoGroup(
     val location: String,
     val groupedReservedGround : MutableList<ReservedGroundInfo>
+)
+
+data class GroundInfoForList(
+    @SerializedName(value = "id")
+    val stadiumId: Int?,
+    val location: String?,
+    val contactPhone: String?,
+    val name: String?,
+    val address: String?,
+    val comment: String?,
+    val price: Int?,
+    val image: String?
 )

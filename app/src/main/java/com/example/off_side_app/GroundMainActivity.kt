@@ -35,7 +35,8 @@ class GroundMainActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL,false)
 
         // 어댑터 할당
-        groundMainAdapter = GroundMainAdapter{ stadiumId->
+        groundMainAdapter = GroundMainAdapter{ stadiumId, externalUrl->
+            // 구장의 경우 외부 구장에 대해서 알 필요가 있나?
             val intent = Intent(this@GroundMainActivity, GroundActivity::class.java)
             intent.putExtra("stadiumId", stadiumId)
             startActivity(intent)

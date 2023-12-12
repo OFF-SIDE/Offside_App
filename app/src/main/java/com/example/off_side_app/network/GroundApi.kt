@@ -45,14 +45,13 @@ interface GetGroundDetailApi{
 
 
 interface GetReservedGroundApi {
-    @GET("stadium")
+    @GET("stadium/myReservation")
     suspend fun getReservedGround(@Query("userPhone") contactPhone: String = ""): List<ReservedGroundInfo>
 }
 
-// data가 있는게 부자연스럽다
 interface GetRefereeApi{
     @GET("referee")
-    suspend fun getRefereeInfo(@Query("location") location: String = "", @Query("date") date: String = ""): List<RefereeInfo>
+    suspend fun getRefereeInfo(@Query("date") date: String): List<RefereeInfo>
 }
 
 interface PostRefereeApi{

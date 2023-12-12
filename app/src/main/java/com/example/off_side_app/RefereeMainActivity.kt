@@ -23,8 +23,6 @@ class RefereeMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var location = ""
-        //contactPhone = AppDataManager.phoneNumber!!
         val date = ""
         val viewModel = ViewModelProvider(this)[RefereeMainViewModel::class.java]
 
@@ -41,7 +39,7 @@ class RefereeMainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = refereeMainAdapter
 
         // api 호출하여 뷰모델의 result 업데이트
-        viewModel.getRefereeData(location, date)
+        viewModel.getRefereeData(date)
 
         // Q. onCreate 안에 observe가 있어도 이벤트가 전달되나?
         viewModel.result.observe(this){ notice ->
@@ -52,7 +50,7 @@ class RefereeMainActivity : AppCompatActivity() {
 
         var swipe = findViewById<SwipeRefreshLayout>(R.id.swipe)
         swipe.setOnRefreshListener {
-            viewModel.getRefereeData(location, date)
+            viewModel.getRefereeData(date)
             val convertedgroup = DivideGroup(viewModel.result.value!!)
             refereeMainAdapter.setList(convertedgroup)
             refereeMainAdapter.notifyDataSetChanged()

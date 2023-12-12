@@ -37,7 +37,7 @@ class Repository {
         }
         catch (e:Exception){
             e.printStackTrace()
-            return GroundInfo(1, "", "", "", "", "", 100, "")
+            return GroundInfo(1, "", "", "", "", "", 100, "", "")
         }
     }
     suspend fun uploadImageData(image: MultipartBody.Part): ImageUrl {
@@ -69,13 +69,13 @@ class Repository {
         }
         catch (e:Exception){
             e.printStackTrace()
-            return listOf<ReservedGroundInfo>()
+            return listOf()
         }
     }
 
-    suspend fun getRefereeData(location: String, date: String): List<RefereeInfo>{
+    suspend fun getRefereeData(date: String): List<RefereeInfo>{
         try {
-            val result = getRefereeClient.getRefereeInfo(location, date)
+            val result = getRefereeClient.getRefereeInfo(date)
             return result
         }
         catch (e:Exception){

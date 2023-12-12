@@ -45,43 +45,6 @@ class GroundActivity : AppCompatActivity() {
 
         val currentStadiumId = intent.getIntExtra("stadiumId", -1)
 
-
-        /*
-        // 갤러리에서 이미지 불러오기
-        binding.selectImageBtn.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            activityResult.launch(intent)
-        }
-
-        */
-
-
-        /*
-        // 스피너
-        val itemArray = AppDataManager.nearLocations
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemArray)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = adapter
-        // 신규 생성의 경우 location의 position=0
-        var currentPosition = 0
-
-        binding.spinner.setSelection(currentPosition)
-
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
-                currentPosition = position
-                // 선택한 구에 대한 작업 수행
-                Toast.makeText(this@GroundActivity, currentPosition.toString(), Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // 아무것도 선택되지 않았을 때의 동작
-                Toast.makeText(this@GroundActivity, "아무 것도 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
-            }
-        }
-         */*/
-
         if(currentStadiumId != -1){
             // 기존 구장의 경우 기존 정보로 텍스트 채우기
             viewModel.getGroundDetailData(currentStadiumId, 1210)  // 오늘 날짜로
@@ -113,43 +76,6 @@ class GroundActivity : AppCompatActivity() {
         }
 
 
-        /*
-        binding.saveBtn.setOnClickListener {
-            if(currentStadiumId == -1){
-                // 신규 생성의 경우
-                if(checkContentsFull(binding, uri)){
-                    // 이미지 업로드
-                    //val multipartBody = ImageUtil.getImageMultipartBody(this, uri)
-                    val filePath = ImageUtil.absolutelyPath(uri, this)
-                    val file = File(filePath)
-
-                    val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-                    val multipartBody = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
-                    viewModel.uploadImageData(multipartBody)
-                    val dialog = LoadingDialog(this@GroundActivity)
-
-                    dialog.show()
-
-                    var serverUrl:String = ""
-                    viewModel.image.observe(this, Observer{ notice ->
-                        serverUrl = notice
-                        try {
-                            // 서버에 데이터 post
-                            val body = getBodyForPost(binding, currentPosition, serverUrl!!)
-                            viewModel.postGroundData(body)
-                        }
-                        catch (e: Exception){
-                            e.printStackTrace()
-                        }
-                        dialog.dismiss()
-                        finish()
-                    })
-                }
-            }
-        }
-
-         */*/
         binding.backBtn.setOnClickListener {
             finish()
         }

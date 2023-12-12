@@ -15,10 +15,9 @@ class RefereeMainViewModel: ViewModel() {
     val result: LiveData<List<RefereeInfo>>
         get() = _result
 
-    fun getRefereeData(location: String, date: String) = viewModelScope.launch {
-        //Log.d("GroundMainViewModel", repository.getAllData().toString())
+    fun getRefereeData(date: String) = viewModelScope.launch {
         try{
-            _result.value = repository.getRefereeData(location, date)
+            _result.value = repository.getRefereeData(date)
         } catch (e: Exception) {
             e.printStackTrace()
         }

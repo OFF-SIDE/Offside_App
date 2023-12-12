@@ -10,7 +10,7 @@
         android:id="@+id/phoneNumberText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="250dp"
         android:hint="전화번호를 입력하세요"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
