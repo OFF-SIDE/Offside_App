@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.off_side_app.data.GroundInfoGroup
-import com.example.off_side_app.databinding.RecyclerviewHeaderBinding
+import com.example.off_side_app.data.RefereeInfoGroup
+import com.example.off_side_app.databinding.RefereeRecyclerviewHeaderBinding
 
 class RefereeMainAdapter(val onClick: (Int?)->(Unit)): RecyclerView.Adapter<RefereeMainAdapter.RefereeViewHolder>() {
     private var items = listOf<RefereeInfoGroup>()
 
-    inner class RefereeViewHolder(private val binding: RecyclerviewHeaderBinding):RecyclerView.ViewHolder(binding.root){
+    inner class RefereeViewHolder(private val binding: RefereeRecyclerviewHeaderBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(group: RefereeInfoGroup){
             binding.locationHeaderText.setText(group.location)
             binding.rvGroupedReferee.apply {
@@ -27,7 +27,7 @@ class RefereeMainAdapter(val onClick: (Int?)->(Unit)): RecyclerView.Adapter<Refe
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RefereeMainAdapter.RefereeViewHolder {
-        return RefereeViewHolder(RecyclerviewHeaderBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return RefereeViewHolder(RefereeRecyclerviewHeaderBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: RefereeMainAdapter.RefereeViewHolder, position: Int) {

@@ -7,16 +7,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.off_side_app.data.GroundInfoGroup
 import com.example.off_side_app.databinding.GroundRecyclerviewHeaderBinding
-class GroundMainAdapter(val onClick: (Int?)->(Unit)) : RecyclerView.Adapter<GroundMainAdapter.GroundViewHolder>() {
+import com.example.off_side_app.databinding.ReservedGroundRecyclerviewHeaderBinding
+
+// 받는 데이터 형식에 따라 리스트 타입 변경
+class ReservedGroundMainAdapter(val onClick: (Int?)->(Unit)) : RecyclerView.Adapter<ReservedGroundMainAdapter.ReservedGroundViewHolder>() {
     private var items = listOf<GroundInfoGroup>()
 
-    inner class GroundViewHolder(private val binding: GroundRecyclerviewHeaderBinding):RecyclerView.ViewHolder(binding.root){
+    inner class ReservedGroundViewHolder(private val binding: ReservedGroundRecyclerviewHeaderBinding):
+        RecyclerView.ViewHolder(binding.root){
         fun bind(group: GroundInfoGroup){
             binding.locationHeaderText.setText(group.location)
-            binding.rvGroupedGround.apply {
+            binding.rvGroupedReservedGround.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(binding.root.context)
-                adapter = GroundMainItemAdapter(onClick, group.groupedGround)
+                adapter = ReservedGroundMainItemAdapter(onClick, group.groupedGround)
                 addItemDecoration(
                     DividerItemDecoration(binding.root.context,
                         DividerItemDecoration.VERTICAL)
@@ -25,11 +29,11 @@ class GroundMainAdapter(val onClick: (Int?)->(Unit)) : RecyclerView.Adapter<Grou
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroundMainAdapter.GroundViewHolder {
-        return GroundViewHolder(GroundRecyclerviewHeaderBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservedGroundMainAdapter.ReservedGroundViewHolder {
+        return ReservedGroundViewHolder(ReservedGroundRecyclerviewHeaderBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
-    override fun onBindViewHolder(holder: GroundMainAdapter.GroundViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ReservedGroundMainAdapter.ReservedGroundViewHolder, position: Int) {
         holder.bind(items[position])
     }
 

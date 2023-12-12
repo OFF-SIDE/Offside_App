@@ -22,5 +22,15 @@ data class RefereeInfo(
 
 data class RefereeInfoGroup(
     val location: String,
-    val groupedReferee: List<RefereeInfo>
+    val groupedReferee: MutableList<RefereeInfo>
+)
+
+data class RefereeInfoForPost(
+    var location: String?,
+    var contactPhone: String?,
+    var name: String?,
+    var comment: String?,
+    var price: Int?,
+    var image: String?,
+    var availableTime: List<String>
 )

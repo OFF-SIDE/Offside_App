@@ -43,7 +43,7 @@
                 app:layout_constraintVertical_bias="0.054">
 
                 <TextView
-                    android:id="@+id/user_infoText"
+                    android:id="@+id/user_commentText"
                     android:layout_width="227dp"
                     android:layout_height="59dp"
                     android:ems="10"
@@ -62,7 +62,7 @@
                     android:layout_height="37dp"
                     android:ems="10"
                     android:hint="이름"
-                    app:layout_constraintEnd_toEndOf="@+id/user_price"
+                    app:layout_constraintEnd_toEndOf="@+id/user_priceText"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -76,17 +76,17 @@
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/user_infoText"
-                    app:layout_constraintTop_toBottomOf="@+id/user_price" />
+                    app:layout_constraintStart_toEndOf="@+id/user_commentText"
+                    app:layout_constraintTop_toBottomOf="@+id/user_priceText" />
 
                 <TextView
-                    android:id="@+id/user_price"
+                    android:id="@+id/user_priceText"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:ems="10"
                     android:hint="가격"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/user_infoText"
+                    app:layout_constraintBottom_toTopOf="@+id/user_commentText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/user_addressText"
                     app:layout_constraintTop_toBottomOf="@+id/user_nameText" />
@@ -98,7 +98,7 @@
                     android:ems="10"
                     android:hint="주소"
                     android:textSize="10sp"
-                    app:layout_constraintBottom_toTopOf="@+id/user_infoText"
+                    app:layout_constraintBottom_toTopOf="@+id/user_commentText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_nameText"
                     app:layout_constraintVertical_bias="1.0" />

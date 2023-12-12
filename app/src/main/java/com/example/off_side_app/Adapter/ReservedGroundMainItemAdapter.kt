@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.R
+import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.databinding.GroundRecyclerviewItemBinding
+import com.example.off_side_app.databinding.ReservedGroundRecyclerviewItemBinding
 
-class GroundMainItemAdapter(val onClick: (Int?)->(Unit), val items: List<GroundInfo>) : RecyclerView.Adapter<GroundMainItemAdapter.GroundItemViewHolder>() {
+class ReservedGroundMainItemAdapter(val onClick: (Int?)->(Unit), val items: List<GroundInfo>) : RecyclerView.Adapter<ReservedGroundMainItemAdapter.ReservedGroundItemViewHolder>() {
 
-    inner class GroundItemViewHolder(private val binding: GroundRecyclerviewItemBinding):RecyclerView.ViewHolder(binding.root){
+    inner class ReservedGroundItemViewHolder(private val binding: ReservedGroundRecyclerviewItemBinding):
+        RecyclerView.ViewHolder(binding.root){
         fun bind(ground: GroundInfo){
             binding.nameText.text = ground.name
             binding.descriptionText.text = ground.address
@@ -26,11 +28,11 @@ class GroundMainItemAdapter(val onClick: (Int?)->(Unit), val items: List<GroundI
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroundItemViewHolder {
-        return GroundItemViewHolder(GroundRecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservedGroundItemViewHolder {
+        return ReservedGroundItemViewHolder(ReservedGroundRecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
-    override fun onBindViewHolder(holder: GroundItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ReservedGroundItemViewHolder, position: Int) {
         holder.bind(items[position])
     }
 

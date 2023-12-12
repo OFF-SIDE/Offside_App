@@ -4,6 +4,8 @@ import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.GroundInfoWithAvailableTime
 import com.example.off_side_app.data.ImageUrl
+import com.example.off_side_app.data.RefereeInfo
+import com.example.off_side_app.data.RefereeInfoForPost
 import com.example.off_side_app.data.ReservedGroundInfo
 import okhttp3.MultipartBody
 import retrofit2.http.Body
@@ -40,8 +42,19 @@ interface GetGroundDetailApi{
     ) : GroundInfoWithAvailableTime
 }
 
-// 여기부터
+
 interface GetReservedGroundApi {
     @GET("stadium")
     suspend fun getReservedGround(@Query("userPhone") contactPhone: String = ""): List<ReservedGroundInfo>
+}
+
+// data가 있는게 부자연스럽다
+interface GetRefereeApi{
+    @GET("referee")
+    suspend fun getRefereeInfo(@Query("contactPhone") contactPhone: String = "", @Query("location") location: String = ""): List<RefereeInfo>
+}
+
+interface PostRefereeApi{
+    @POST("referee")
+    suspend fun postRefereeInfo(@Body refereeInfoForPost: RefereeInfoForPost): RefereeInfo
 }

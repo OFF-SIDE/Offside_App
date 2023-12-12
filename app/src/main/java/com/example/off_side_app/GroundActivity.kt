@@ -45,6 +45,8 @@ class GroundActivity : AppCompatActivity() {
 
         val currentStadiumId = intent.getIntExtra("stadiumId", -1)
 
+
+        /*
         // 갤러리에서 이미지 불러오기
         binding.selectImageBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
@@ -52,6 +54,10 @@ class GroundActivity : AppCompatActivity() {
             activityResult.launch(intent)
         }
 
+        */
+
+
+        /*
         // 스피너
         val itemArray = AppDataManager.nearLocations
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemArray)
@@ -74,6 +80,7 @@ class GroundActivity : AppCompatActivity() {
                 Toast.makeText(this@GroundActivity, "아무 것도 선택되지 않았습니다.", Toast.LENGTH_SHORT).show()
             }
         }
+         */*/
 
         if(currentStadiumId != -1){
             // 기존 구장의 경우 기존 정보로 텍스트 채우기
@@ -92,12 +99,11 @@ class GroundActivity : AppCompatActivity() {
                         .into(binding.pictureImageView)
 
                     // 2. 이름
-                    binding.nameText.setText(groundInfo.name)
-                    binding.contactPhoneText.setText(groundInfo.contactPhone)
-                    binding.addressText.setText(groundInfo.address)
-                    binding.commentText.setText(groundInfo.comment)
-                    binding.priceText.setText(groundInfo.price!!.toString())
-                    //currentPosition = groundInfo.location
+                    binding.userNameText.setText(groundInfo.name)
+                    binding.userPhoneText.setText(groundInfo.contactPhone)
+                    binding.userAddressText.setText(groundInfo.address)
+                    binding.userCommentText.setText(groundInfo.comment)
+                    binding.userPriceText.setText(groundInfo.price!!.toString())
                 }
                 catch (e: Exception){
                     e.printStackTrace()
@@ -107,6 +113,7 @@ class GroundActivity : AppCompatActivity() {
         }
 
 
+        /*
         binding.saveBtn.setOnClickListener {
             if(currentStadiumId == -1){
                 // 신규 생성의 경우
@@ -141,6 +148,8 @@ class GroundActivity : AppCompatActivity() {
                 }
             }
         }
+
+         */*/
         binding.backBtn.setOnClickListener {
             finish()
         }
@@ -189,15 +198,15 @@ class GroundActivity : AppCompatActivity() {
     }
 
     fun checkContentsFull(binding: ActivityGroundBinding, uri: Uri?): Boolean{
-        if(binding.addressText.text.toString() == "")
+        if(binding.userAddressText.text.toString() == "")
             return false
-        if(binding.nameText.text.toString() == "")
+        if(binding.userNameText.text.toString() == "")
             return false
-        if(binding.commentText.text.toString() == "")
+        if(binding.userCommentText.text.toString() == "")
             return false
-        if(binding.contactPhoneText.text.toString() == "")
+        if(binding.userPhoneText.text.toString() == "")
             return false
-        if(binding.priceText.text.toString() == "")
+        if(binding.userPriceText.text.toString() == "")
             return false
         return true
     }
@@ -205,11 +214,11 @@ class GroundActivity : AppCompatActivity() {
     fun getBodyForPost(binding: ActivityGroundBinding, currentPosition: Int, serverUrl: String): GroundInfoForPost {
         var groundInfoForPost = GroundInfoForPost(
             AppDataManager.nearLocations[currentPosition],
-            binding.nameText.text.toString(),
-            binding.contactPhoneText.text.toString(),
-            binding.addressText.text.toString(),
-            binding.commentText.text.toString(),
-            binding.priceText.text.toString().toInt(),
+            binding.userNameText.text.toString(),
+            binding.userPhoneText.text.toString(),
+            binding.userAddressText.text.toString(),
+            binding.userCommentText.text.toString(),
+            binding.userPriceText.text.toString().toInt(),
             serverUrl
         )
         return groundInfoForPost
