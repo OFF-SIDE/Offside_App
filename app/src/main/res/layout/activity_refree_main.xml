@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RefreeMainActivity">
+    tools:context=".RefereeMainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/reservedGroundBtn"
             android:layout_width="40dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"

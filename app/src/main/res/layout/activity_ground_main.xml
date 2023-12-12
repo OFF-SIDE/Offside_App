@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/reservedGroundBtn"
             android:layout_width="40dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"

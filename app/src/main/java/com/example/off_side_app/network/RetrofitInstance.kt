@@ -12,14 +12,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object RetrofitInstance {
     val BASE_URL = "http://13.209.73.252:8080/"
 
-    /*
-    val gson : Gson = GsonBuilder()
-        .setLenient()
-        .create()
-
-
-     */
-
     val client = OkHttpClient.Builder()
         .addInterceptor { chain ->
             val request = chain.request()

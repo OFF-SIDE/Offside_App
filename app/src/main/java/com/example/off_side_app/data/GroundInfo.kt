@@ -56,6 +56,6 @@ data class ReservedGroundInfo(
 )
 
 data class ReservedGroundInfoGroup(
-    val location,
+    val location: String,
     val groupedReservedGround : MutableList<ReservedGroundInfo>
 )

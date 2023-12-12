@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/reservedGroundBtn"
             android:layout_width="40dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -249,7 +249,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="10:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -259,7 +259,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="11:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -269,7 +269,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="12:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -287,7 +287,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="13:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -297,7 +297,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="14:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -307,7 +307,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="15:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -325,7 +325,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="16:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -335,7 +335,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="17:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />
@@ -345,7 +345,7 @@
                             android:layout_width="115dp"
                             android:layout_height="70dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/buttonshape"
+                            android:background="@drawable/buttonshape2"
                             android:text="18:00"
                             android:textColor="#000000"
                             android:textSize="15sp" />

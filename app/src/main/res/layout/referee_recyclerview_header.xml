@@ -21,7 +21,7 @@
         tools:text="지역" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGroupedReservedGround"
+        android:id="@+id/rvGroupedReferee"
         android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

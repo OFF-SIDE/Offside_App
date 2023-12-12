@@ -13,7 +13,7 @@ import com.example.off_side_app.data.RefereeInfoGroup
 import com.example.off_side_app.databinding.ActivityRefreeMainBinding
 import com.example.off_side_app.ui.RefereeMainViewModel
 
-class RefreeMainActivity : AppCompatActivity() {
+class RefereeMainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityRefreeMainBinding.inflate(layoutInflater)
     }
@@ -23,9 +23,9 @@ class RefreeMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var contactPhone = ""
+        var location = ""
         //contactPhone = AppDataManager.phoneNumber!!
-        val location = ""
+        val date = ""
         val viewModel = ViewModelProvider(this)[RefereeMainViewModel::class.java]
 
         // 아이템을 가로로 하나씩 보여줌
@@ -34,14 +34,14 @@ class RefreeMainActivity : AppCompatActivity() {
 
         // 어댑터 할당
         refereeMainAdapter = RefereeMainAdapter{ id->
-            val intent = Intent(this@RefreeMainActivity, RefereeActivity::class.java)
+            val intent = Intent(this@RefereeMainActivity, RefereeActivity::class.java)
             intent.putExtra("id", id)
             startActivity(intent)
         }
         binding.recyclerView.adapter = refereeMainAdapter
 
         // api 호출하여 뷰모델의 result 업데이트
-        viewModel.getRefereeData(contactPhone, location)
+        viewModel.getRefereeData(location, date)
 
         // Q. onCreate 안에 observe가 있어도 이벤트가 전달되나?
         viewModel.result.observe(this){ notice ->
@@ -52,7 +52,7 @@ class RefreeMainActivity : AppCompatActivity() {
 
         var swipe = findViewById<SwipeRefreshLayout>(R.id.swipe)
         swipe.setOnRefreshListener {
-            viewModel.getRefereeData(contactPhone, location)
+            viewModel.getRefereeData(location, date)
             val convertedgroup = DivideGroup(viewModel.result.value!!)
             refereeMainAdapter.setList(convertedgroup)
             refereeMainAdapter.notifyDataSetChanged()
@@ -72,7 +72,7 @@ class RefreeMainActivity : AppCompatActivity() {
         for (location in AppDataManager.nearLocations){
             val groupedItem = RefereeInfoGroup(
                 location,
-                mutableListOf<RefereeInfo>()
+                mutableListOf()
             )
             for (item in items){
                 if(item.location == location){

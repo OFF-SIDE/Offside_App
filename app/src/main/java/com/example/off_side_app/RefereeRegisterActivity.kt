@@ -15,13 +15,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
-import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.ImageUtil
 import com.example.off_side_app.data.RefereeInfoForPost
-import com.example.off_side_app.databinding.ActivityGroundMainBinding
-import com.example.off_side_app.databinding.ActivityGroundRegisterBinding
 import com.example.off_side_app.databinding.ActivityRefereeRegisterBinding
-import com.example.off_side_app.ui.GroundViewModel
 import com.example.off_side_app.ui.LoadingDialog
 import com.example.off_side_app.ui.RefereeViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -116,11 +112,11 @@ class RefereeRegisterActivity : AppCompatActivity() {
 
             button.setOnClickListener {
                 if(buttonBrightnessMap[button.id]!!){
-                    button.setBackgroundResource(com.example.off_side_app.R.drawable.buttonshape)
+                    button.setBackgroundResource(com.example.off_side_app.R.drawable.buttonshape2)
                     buttonBrightnessMap[button.id] = false
                 }
                 else{
-                    button.setBackgroundResource(com.example.off_side_app.R.drawable.buttonshape2)
+                    button.setBackgroundResource(com.example.off_side_app.R.drawable.buttonshape)
                     buttonBrightnessMap[button.id] = true
                 }
             }
@@ -139,9 +135,7 @@ class RefereeRegisterActivity : AppCompatActivity() {
         }
     }
 
-    fun checkContentsFull(binding: ActivityGroundRegisterBinding, uri: Uri?): Boolean{
-        if(binding.addressText.text.toString() == "")
-            return false
+    fun checkContentsFull(binding: ActivityRefereeRegisterBinding, uri: Uri?): Boolean{
         if(binding.nameText.text.toString() == "")
             return false
         if(binding.commentText.text.toString() == "")
@@ -156,13 +150,21 @@ class RefereeRegisterActivity : AppCompatActivity() {
     fun getBodyForPost(binding: ActivityRefereeRegisterBinding, currentPosition: Int, serverUrl: String): RefereeInfoForPost {
         var refereeInfoForPost = RefereeInfoForPost(
             AppDataManager.nearLocations[currentPosition],
-            binding.nameText.text.toString(),
             binding.contactPhoneText.text.toString(),
-            binding.addressText.text.toString(),
+            binding.nameText.text.toString(),
             binding.commentText.text.toString(),
             binding.priceText.text.toString().toInt(),
-            serverUrl
+            serverUrl,
+            mutableListOf()
         )
-        return refreeInfoForPost
+        for (i in 10..22) {
+            val buttonId = resources.getIdentifier("hour${i}_btn", "id", packageName)
+
+            if(buttonBrightnessMap[buttonId]!!){
+                refereeInfoForPost.availableTime.add("${i}00")
+            }
+        }
+
+        return refereeInfoForPost
     }
 }

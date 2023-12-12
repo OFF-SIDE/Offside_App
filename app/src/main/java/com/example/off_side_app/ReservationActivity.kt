@@ -60,8 +60,8 @@ class ReservationActivity : AppCompatActivity() {
                 binding.userNameText.setText(groundInfo.name)
                 binding.userPhoneText.setText(groundInfo.contactPhone)
                 binding.userAddressText.setText(groundInfo.address)
-                binding.userInfoText.setText(groundInfo.comment)
-                binding.userPrice.setText(groundInfo.price!!.toString())
+                binding.userCommentText.setText(groundInfo.comment)
+                binding.userPriceText.setText(groundInfo.price!!.toString())
             }
             catch (e: Exception){
                 e.printStackTrace()

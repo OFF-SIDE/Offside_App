@@ -4,6 +4,7 @@ import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.GroundInfoWithAvailableTime
 import com.example.off_side_app.data.ImageUrl
+import com.example.off_side_app.data.RefereeDetailInfo
 import com.example.off_side_app.data.RefereeInfo
 import com.example.off_side_app.data.RefereeInfoForPost
 import com.example.off_side_app.data.ReservedGroundInfo
@@ -51,10 +52,17 @@ interface GetReservedGroundApi {
 // data가 있는게 부자연스럽다
 interface GetRefereeApi{
     @GET("referee")
-    suspend fun getRefereeInfo(@Query("contactPhone") contactPhone: String = "", @Query("location") location: String = ""): List<RefereeInfo>
+    suspend fun getRefereeInfo(@Query("location") location: String = "", @Query("date") date: String = ""): List<RefereeInfo>
 }
 
 interface PostRefereeApi{
     @POST("referee")
     suspend fun postRefereeInfo(@Body refereeInfoForPost: RefereeInfoForPost): RefereeInfo
+}
+
+interface GetRefereeDetailApi{
+    @GET("referee/{id}")
+    suspend fun getRefereeDetail(
+        @Path("id") stadiumId: Int
+    ) : RefereeDetailInfo
 }

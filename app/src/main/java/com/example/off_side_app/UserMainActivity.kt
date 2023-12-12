@@ -26,7 +26,6 @@ class UserMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         var contactPhone = ""
-        //contactPhone = AppDataManager.phoneNumber!!
         val location = ""
         val viewModel = ViewModelProvider(this)[GroundMainViewModel::class.java]
         binding.recyclerView.layoutManager = LinearLayoutManager(this,
@@ -62,6 +61,15 @@ class UserMainActivity : AppCompatActivity() {
             swipe.isRefreshing = false
         }
 
+        binding.refereeButton.setOnClickListener{
+            val intent = Intent(this@UserMainActivity, RefereeMainActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.reservedGroundBtn.setOnClickListener {
+            val intent = Intent(this@UserMainActivity, UserReservationCheckActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun DivideGroup(items: List<GroundInfo>): MutableList<GroundInfoGroup>{
@@ -69,7 +77,7 @@ class UserMainActivity : AppCompatActivity() {
         for (location in AppDataManager.nearLocations){
             val groupedItem = GroundInfoGroup(
                 location,
-                mutableListOf<GroundInfo>()
+                mutableListOf()
             )
             for (item in items){
                 if(item.location == location){

@@ -24,7 +24,7 @@ class RefereeActivity : AppCompatActivity() {
 
         if(currentId != -1){
             // 기존 구장의 경우 기존 정보로 텍스트 채우기
-            viewModel.getRefereeDetailData(currentId, 1201)  // 오늘 날짜로
+            viewModel.getRefereeDetailData(currentId)  // 오늘 날짜로
             val dialog = LoadingDialog(this@RefereeActivity)
 
             dialog.show()
@@ -41,7 +41,6 @@ class RefereeActivity : AppCompatActivity() {
                     // 2. 이름
                     binding.userNameText.setText(refereeInfo.name)
                     binding.userPhoneText.setText(refereeInfo.contactPhone)
-                    binding.userAddressText.setText(refereeInfo.address)
                     binding.userCommentText.setText(refereeInfo.comment)
                     binding.userPriceText.setText(refereeInfo.price!!.toString())
                 }

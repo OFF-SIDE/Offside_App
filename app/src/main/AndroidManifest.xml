@@ -33,7 +33,7 @@
             android:name=".RefereeRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".RefreeMainActivity"
+            android:name=".RefereeMainActivity"
             android:exported="false" />
         <activity
             android:name=".GroundRegisterActivity"

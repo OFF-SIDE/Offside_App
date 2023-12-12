@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.GroundInfoWithAvailableTime
 import com.example.off_side_app.data.ImageUrl
+import com.example.off_side_app.data.RefereeDetailInfo
 import com.example.off_side_app.data.RefereeInfoForPost
 import com.example.off_side_app.repository.Repository
 import kotlinx.coroutines.launch
@@ -19,8 +20,8 @@ class RefereeViewModel: ViewModel() {
     val image: LiveData<String>
         get() = _image
 
-    private val _detail = MutableLiveData<RefereeInfoWithAvailableTime>()
-    val detail: LiveData<RefereeInfoWithAvailableTime>
+    private val _detail = MutableLiveData<RefereeDetailInfo>()
+    val detail: LiveData<RefereeDetailInfo>
         get() = _detail
 
     fun postRefereeData(refereeInfoForPost: RefereeInfoForPost) = viewModelScope.launch {
@@ -37,9 +38,9 @@ class RefereeViewModel: ViewModel() {
         }
     }
 
-    fun getRefereeDetailData(id: Int, date: Int) = viewModelScope.launch {
+    fun getRefereeDetailData(id: Int) = viewModelScope.launch {
         try{
-            val referee: RefereeInfoWithAvailableTime = repository.getRefereeDetail(id)
+            val referee: RefereeDetailInfo = repository.getRefereeDetail(id)
             _detail.value = referee
         }
         catch (e: Exception){

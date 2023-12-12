@@ -4,12 +4,14 @@ import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.GroundInfoWithAvailableTime
 import com.example.off_side_app.data.ImageUrl
+import com.example.off_side_app.data.RefereeDetailInfo
 import com.example.off_side_app.data.RefereeInfo
 import com.example.off_side_app.data.RefereeInfoForPost
 import com.example.off_side_app.data.ReservedGroundInfo
 import com.example.off_side_app.network.AddGroundApi
 import com.example.off_side_app.network.GetGroundDetailApi
 import com.example.off_side_app.network.GetRefereeApi
+import com.example.off_side_app.network.GetRefereeDetailApi
 import com.example.off_side_app.network.GetReservedGroundApi
 import com.example.off_side_app.network.GroundApi
 import com.example.off_side_app.network.PostRefereeApi
@@ -25,6 +27,7 @@ class Repository {
     private val getReservedGroundClient = RetrofitInstance.getInstance().create(GetReservedGroundApi::class.java)
     private val getRefereeClient = RetrofitInstance.getInstance().create(GetRefereeApi::class.java)
     private val postRefereeClient = RetrofitInstance.getInstance().create(PostRefereeApi::class.java)
+    private val getRefereeDetailClient = RetrofitInstance.getInstance().create(GetRefereeDetailApi::class.java)
 
     suspend fun getGroundData(contactPhone: String, location: String) = getClient.getGroundInfo(contactPhone, location)
     suspend fun postGroundData(groundInfoForPost: GroundInfoForPost): GroundInfo {
@@ -70,14 +73,14 @@ class Repository {
         }
     }
 
-    suspend fun getRefereeData(contactPhone: String, location: String): List<RefereeInfo>{
+    suspend fun getRefereeData(location: String, date: String): List<RefereeInfo>{
         try {
-            val result = getRefereeClient.getRefereeInfo(contactPhone, location)
+            val result = getRefereeClient.getRefereeInfo(location, date)
             return result
         }
         catch (e:Exception){
             e.printStackTrace()
-            return listOf<RefereeInfo>()
+            return listOf()
         }
     }
 
@@ -89,6 +92,17 @@ class Repository {
         catch (e:Exception){
             e.printStackTrace()
             return RefereeInfo(1, "", "", "", "", 1, "")
+        }
+    }
+
+    suspend fun getRefereeDetail(id: Int): RefereeDetailInfo{
+        try{
+            val result = getRefereeDetailClient.getRefereeDetail(id)
+            return result
+        }
+        catch (e:Exception){
+            e.printStackTrace()
+            return RefereeDetailInfo(1, "", "", "", "", 1, "")
         }
     }
 }
