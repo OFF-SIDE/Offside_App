@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,6 +30,7 @@ import java.io.File
 class GroundRegisterActivity : AppCompatActivity() {
     lateinit var binding: ActivityGroundRegisterBinding
     private var uri: Uri? = null
+    private val buttonBrightnessMap = mutableMapOf<Int, Boolean>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGroundRegisterBinding.inflate(layoutInflater)
@@ -100,6 +102,25 @@ class GroundRegisterActivity : AppCompatActivity() {
         }
         binding.backBtn.setOnClickListener {
             finish()
+        }
+
+        for (i in 10..22) {
+            val buttonId = resources.getIdentifier("hour${i}_btn", "id", packageName)
+            val button = findViewById<Button>(buttonId)
+
+            // 초기 밝기 상태를 false로 설정합니다.
+            buttonBrightnessMap[buttonId] = false
+
+            button.setOnClickListener {
+                if(buttonBrightnessMap[button.id]!!){
+                    button.setBackgroundResource(com.example.off_side_app.R.drawable.buttonshape)
+                    buttonBrightnessMap[button.id] = false
+                }
+                else{
+                    button.setBackgroundResource(com.example.off_side_app.R.drawable.buttonshape2)
+                    buttonBrightnessMap[button.id] = true
+                }
+            }
         }
 
     }

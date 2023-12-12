@@ -2,16 +2,22 @@ package com.example.off_side_app
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -25,6 +31,7 @@ class ReservationActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityReservationBinding
     private var uri: Uri? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +72,7 @@ class ReservationActivity : AppCompatActivity() {
         binding.reservationBackBtn.setOnClickListener {
             finish()
         }
+
 
         val dateButtonInfoMap = mutableMapOf<String, BooleanArray>()
 

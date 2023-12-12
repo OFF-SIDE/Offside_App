@@ -46,3 +46,11 @@ data class GroundInfoGroup(
     val location : String,
     val groupedGround : MutableList<GroundInfo>
 )
+
+data class ReservedGroundInfo(
+    val groundInfo: GroundInfo,
+    val date: String,
+    val time: String,
+    val userName: String,
+    val userPhone: String
+)

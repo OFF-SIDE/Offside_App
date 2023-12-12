@@ -4,6 +4,7 @@ import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.GroundInfoWithAvailableTime
 import com.example.off_side_app.data.ImageUrl
+import com.example.off_side_app.data.ReservedGroundInfo
 import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -37,4 +38,10 @@ interface GetGroundDetailApi{
         @Path("stadiumId") stadiumId: Int,
         @Query("date") date: Int
     ) : GroundInfoWithAvailableTime
+}
+
+// 여기부터
+interface GetReservedGroundApi {
+    @GET("stadium")
+    suspend fun getReservedGround(@Query("userPhone") contactPhone: String = ""): List<ReservedGroundInfo>
 }

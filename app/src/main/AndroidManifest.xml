@@ -24,6 +24,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".UserReservationCheckActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RefereeRegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RefreeMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".GroundRegisterActivity"
             android:exported="false" />
         <activity
