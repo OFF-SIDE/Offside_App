@@ -7,7 +7,6 @@ import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitInstance {
     val BASE_URL = "http://13.209.73.252:8080/"

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/usermatcing_btn1"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:text="예약하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/usermatcing_btn2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.622" />
+
+    <Button
+        android:id="@+id/usermatcing_btn2"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:text="매칭하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/usermatcing_btn3"
+        app:layout_constraintStart_toEndOf="@+id/usermatcing_btn1"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <Button
+        android:id="@+id/usermatcing_btn3"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="40dp"
+        android:text="취소"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/usermatcing_btn2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.623" />
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="155dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름: " />
+
+            <TextView
+                android:id="@+id/matching_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="전화번호: " />
+
+            <TextView
+                android:id="@+id/matching_pnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/matching_info"
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            android:text="정보"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="325dp"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.398">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userbooking_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약자 이름: " />
+
+            <EditText
+                android:id="@+id/matchingnameEdit"
+                android:layout_width="130dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="예약명을 입력하세요"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userbooking_pnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전화 번호: " />
+
+            <EditText
+                android:id="@+id/matchingpnumEdit"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="전화번호를 입력하세요"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/matchinginfoEdit"
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="상대 팀에게 전달할 정보를 적어주세요."
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

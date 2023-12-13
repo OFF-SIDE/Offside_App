@@ -25,11 +25,5 @@ data class Ground (
     }
 }
 
-data class Reserve(
-    val nameList: ArrayList<String>,
-    val pnumList: ArrayList<String>,
-    val day: BooleanArray = BooleanArray(24){false}
-)
-
 
 

@@ -1,9 +1,11 @@
 package com.example.off_side_app
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
@@ -13,16 +15,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
-import com.example.off_side_app.data.AppDataManager.reserve
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.ImageUtil
 import com.example.off_side_app.databinding.ActivityGroundBinding
+import com.example.off_side_app.network.ReserveConnectionApi
+import com.example.off_side_app.network.ReserveViewModel
+import com.example.off_side_app.ui.GroundMainViewModel
 import com.example.off_side_app.ui.GroundViewModel
 import com.example.off_side_app.ui.LoadingDialog
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -32,8 +37,26 @@ import java.io.File
 import java.util.Calendar
 
 class GroundActivity : AppCompatActivity() {
+
+
+    private val buttons: List<Button> by lazy {
+        List(13) { index ->
+            findViewById<Button>(
+                resources.getIdentifier(
+                    "hour${1000 + 100 * index}_btn",
+                    "id",
+                    packageName
+                )
+            )
+        }
+    }
+
     lateinit var binding: ActivityGroundBinding
     private var uri: Uri? = null
+
+    private val viewModel2: ReserveViewModel by viewModels()
+
+    private val ReserveConnectionApi = ReserveConnectionApi()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,46 +107,87 @@ class GroundActivity : AppCompatActivity() {
             finish()
         }
 
-        val today = reserve["2023/11/26"]
-
-        if (today != null) {
-            val hourIndex = 6
-            today.nameList[hourIndex] = "정한샘"
-            today.pnumList[hourIndex] = "010-9259-4719"
-            today.day[hourIndex] = true
-        }
-
         binding.daySelectBtn.setOnClickListener {
 
             val cal = Calendar.getInstance()
-            val data = DatePickerDialog.OnDateSetListener { _, year, month, day -> val selectedDate = "${year}/${month + 1}/${day}"
-                binding.daySelectBtn.text = "${year}/${month+1}/${day}"
-            val rese = reserve[selectedDate]
+            val data = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                val selectedDate = "${year - 2000}${month + 1}${day}"
+                binding.daySelectBtn.text = "${year - 2000}/${month + 1}/${day}"
+                viewModel2.fetchDataAndChangeButtonBackground1(
+                    stadiumId = currentStadiumId,
+                    date = selectedDate,
+                    onSuccess = {
+                        // 성공 시 reserveData를 사용하는 예시
+                        viewModel2.reservationListData.observe(
+                            this@GroundActivity
+                        ) { reservationList ->
+                            // reservationList에 접근하는 부분 예시
+                            Log.d(
+                                "ReservationActivity",
+                                "Reservation List Observer Called: $reservationList"
+                            )
 
-            if (rese != null) {
-                // buttonInfo를 사용하여 원하는 작업 수행
-                for (i in rese.day.indices) {
-                    if (rese.day[i]) {
-                        // true일 경우 실행할 코드
-                        performTrueCase(i)
-                    } else {
-                        // false일 경우 실행할 코드
-                        performFalseCase(i)
+                            // 성공 시 matchingQData를 사용하는 예시
+                            viewModel2.matchingQData.observe(
+                                this@GroundActivity
+                            ) { matchingQData ->
+                                // matchingQData에 접근하는 부분 예시
+                                Log.d(
+                                    "ReservationActivity",
+                                    "MatchingQ List Observer Called: $matchingQData"
+                                )
+
+                                // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                                updateUI(
+                                    reservationList,
+                                    matchingQData,
+                                    currentStadiumId,
+                                    selectedDate
+                                )
+                            }
+                        }
+                    },
+                    onError = { exception ->
+                        // 실패 시 처리
+                        Log.e("ReservationActivity", "Error: $exception")
                     }
-                }
-            } else {
-                // 선택된 날짜에 대한 정보가 없을 경우의 처리
-                Toast.makeText(this, "해당 날짜에 대한 정보가 없습니다.", Toast.LENGTH_SHORT).show()
+                )
             }
+
+                DatePickerDialog(
+                    this,
+                    data,
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)
+                ).show()
+
+
+            }
+
+
         }
 
-        DatePickerDialog(
-                this,
-                data,
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)
-            ).show()
+
+    private fun updateUI(reservationList: List<String>, matchingQ: List<String>, stadiumId: Int, date: String) {
+        Log.d("ReservationActivity", "Updating UI - Reservation List: $reservationList")
+        for (index in buttons.indices) {
+            val button = buttons[index]
+            val time = (1000 + index * 100).toString()
+
+            when {
+                time in reservationList -> {
+                    // 해당 시간대의 버튼의 배경을 검정색으로 변경
+                    button.setBackgroundResource(R.drawable.buttonshape3) // 적절한 리소스 ID로 변경
+                    button.setOnClickListener {
+                        getconfirmDialog(stadiumId, date, time)
+                    }
+                }
+                else -> {
+                    // 해당 시간대가 없는 경우, 버튼의 배경을 흰색으로 변경
+                    button.setBackgroundResource(R.drawable.buttonshape) // 적절한 리소스 ID로 변경
+                }
+            }
         }
     }
 
@@ -154,66 +218,81 @@ class GroundActivity : AppCompatActivity() {
         return groundInfoForPost
     }
 
-    private fun performTrueCase(buttonIndex: Int, ) {
-        // 여기에 true일 경우 실행할 코드를 작성하세요.
+        fun getconfirmDialog(stadiumId: Int, date: String, time: String) {
 
-        val buttonId = resources.getIdentifier("hour${buttonIndex}_btn", "id", packageName)
-        binding.root.findViewById<Button>(buttonId)?.setBackgroundResource(R.drawable.buttonshape2)
-        binding.root.findViewById<Button>(buttonId)?.setOnClickListener {
-            val name ="정한샘"
-            val phonenumeber ="010-9259-4719"
-            getbookingDialog(name, phonenumeber)
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.booking_info_dialog, null)
+
+            val reservename = mDialogView.findViewById<TextView>(R.id.reserve_name)
+            val reservepnum = mDialogView.findViewById<TextView>(R.id.reserve_pnum)
+
+            viewModel2.fetchDataNameAndPnum(
+                stadiumId = stadiumId,
+                date = date,
+                time = time,
+                onSuccess = {
+                    // 성공 시 reserveData를 사용하는 예시
+                    viewModel2.username.observe(
+                        this@GroundActivity
+                    ) { username->
+                        // reservationList에 접근하는 부분 예시
+                        Log.d(
+                            "GroundActivity",
+                            "username Observer Called: $username"
+                        )
+
+                        // 성공 시 matchingQData를 사용하는 예시
+                        viewModel2.userphone.observe(
+                            this@GroundActivity
+                        ) { userphone ->
+                            // matchingQData에 접근하는 부분 예시
+                            Log.d(
+                                "GroundActivity",
+                                "userphone Observer Called: $userphone"
+                            )
+
+                            // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                            reservename?.text = username
+                            reservepnum?.text = userphone
+                        }
+                    }
+                },
+                onError = { exception ->
+                    // 실패 시 처리
+                    Log.e("ReservationActivity", "Error: $exception")
+                }
+            )
+
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("예약 정보")
+
+            val mAlertDialog = mBuilder.show()
+
+            val okButton = mDialogView.findViewById<Button>(R.id.booking_btn1)
+            okButton.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
+
+            val noButton = mDialogView.findViewById<Button>(R.id.booking_btn2)
+            noButton.setOnClickListener {
+
+            }
         }
-    }
 
-
-    // false일 경우 실행할 코드
-    private fun performFalseCase(buttonIndex: Int) {
-        // 여기에 false일 경우 실행할 코드를 작성하세요.
-        val buttonId = resources.getIdentifier("hour${buttonIndex}_btn", "id", packageName)
-        binding.root.findViewById<Button>(buttonId)?.setBackgroundResource(R.drawable.buttonshape)
-        binding.root.findViewById<Button>(buttonId)?.setOnClickListener{
-            Toast.makeText(this, "예약이 되어 있지 않습니다.", Toast.LENGTH_SHORT).show()
+        private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK && result.data != null) {
+                // 갤러리에서 선택한 이미지의 Uri를 저장
+                uri = result.data!!.data
+                Glide.with(this)
+                    .load(uri)
+                    .into(binding.pictureImageView)
+            }
         }
-        // buttonIndex를 사용하여 특정 버튼에 대한 작업을 수행할 수 있습니다.
-    }
-
-    private fun getbookingDialog(name: String, pnum: String){
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.booking_info_dialog, null)
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-            .setTitle("예약 정보")
-
-        val  mAlertDialog = mBuilder.show()
-
-        val bookname = mDialogView.findViewById<TextView>(R.id.booking_name)
-        val bookpnum = mDialogView.findViewById<TextView>(R.id.booking_pnum)
-
-        bookname.text = "예약자 이름 : $name"
-        bookpnum.text = "전화 번호 : $pnum"
-
-        val okButton = mDialogView.findViewById<Button>(R.id.booking_btn1)
-        okButton.setOnClickListener {
-            mAlertDialog.dismiss()
-        }
-
-        val noButton = mDialogView.findViewById<Button>(R.id.booking_btn2)
-        noButton.setOnClickListener {
-
-        }
-    }
-
-    private val activityResult: ActivityResultLauncher<Intent> = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK && result.data != null) {
-            // 갤러리에서 선택한 이미지의 Uri를 저장
-            uri = result.data!!.data
-            Glide.with(this)
-                .load(uri)
-                .into(binding.pictureImageView)
-        }
-    }
 }
+
+
 
 
 

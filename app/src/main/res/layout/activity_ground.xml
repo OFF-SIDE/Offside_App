@@ -73,40 +73,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-                    <Button
-                        android:id="@+id/hour6_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="6:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour7_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="7:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour8_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="8:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
+                    android:orientation="horizontal"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -115,17 +82,7 @@
 
 
                     <Button
-                        android:id="@+id/hour9_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="9:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour10_btn"
+                        android:id="@+id/hour1000_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -135,12 +92,22 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour11_btn"
+                        android:id="@+id/hour1100_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
                         android:text="11:00"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/hour1200_btn"
+                        android:layout_width="115dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="12:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -153,17 +120,7 @@
 
 
                     <Button
-                        android:id="@+id/hour12_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="12:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour13_btn"
+                        android:id="@+id/hour1300_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -173,12 +130,22 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour14_btn"
+                        android:id="@+id/hour1400_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
                         android:text="14:00"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/hour1500_btn"
+                        android:layout_width="115dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="15:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -191,17 +158,7 @@
 
 
                     <Button
-                        android:id="@+id/hour15_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="15:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour16_btn"
+                        android:id="@+id/hour1600_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -211,12 +168,22 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour17_btn"
+                        android:id="@+id/hour1700_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
                         android:text="17:00"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/hour1800_btn"
+                        android:layout_width="115dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="18:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -229,17 +196,7 @@
 
 
                     <Button
-                        android:id="@+id/hour18_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="18:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour19_btn"
+                        android:id="@+id/hour1900_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -249,7 +206,7 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour20_btn"
+                        android:id="@+id/hour2000_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -258,16 +215,8 @@
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
                     <Button
-                        android:id="@+id/hour21_btn"
+                        android:id="@+id/hour2100_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -276,26 +225,6 @@
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
-                    <Button
-                        android:id="@+id/hour22_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="22:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour23_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="23:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -305,32 +234,12 @@
 
 
                     <Button
-                        android:id="@+id/hour0_btn"
+                        android:id="@+id/hour2200_btn"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
-                        android:text="00:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour1_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="1:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour2_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="2:00"
+                        android:text="22:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
