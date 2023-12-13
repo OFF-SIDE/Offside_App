@@ -17,10 +17,10 @@ class ReservedGroundMainItemAdapter(val items: List<ReservedGroundInfo>) : Recyc
     inner class ReservedGroundItemViewHolder(private val binding: ReservedGroundRecyclerviewItemBinding):
         RecyclerView.ViewHolder(binding.root){
         fun bind(ground: ReservedGroundInfo){
-            binding.nameText.text = ground.groundInfo.name
-            binding.descriptionText.text = ground.groundInfo.address
+            binding.nameText.text = ground.stadium.name
+            binding.descriptionText.text = ground.stadium.address
             Glide.with(binding.imageView)
-                .load(ground.groundInfo.image)
+                .load(ground.stadium.image)
                 .error(R.drawable.baseline_error_24)
                 .into(binding.imageView)
 

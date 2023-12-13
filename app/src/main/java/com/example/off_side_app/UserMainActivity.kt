@@ -3,7 +3,6 @@ package com.example.off_side_app
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -37,7 +36,7 @@ class UserMainActivity : AppCompatActivity() {
             if(externalUrl == "")
                 intent = Intent(this@UserMainActivity, ReservationActivity::class.java)
             else
-                intent = Intent(this@UserMainActivity, ExternalGroundActivity::class.java)
+                intent = Intent(this@UserMainActivity, ExternalReservationActivity::class.java)
 
             intent.putExtra("stadiumId", stadiumId)
             startActivity(intent)

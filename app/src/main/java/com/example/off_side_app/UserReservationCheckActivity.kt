@@ -65,7 +65,7 @@ class UserReservationCheckActivity : AppCompatActivity() {
                 mutableListOf()
             )
             for (item in items){
-                if(item.groundInfo.location == location){
+                if(item.stadium.location == location){
                     groupedItem.groupedReservedGround.add(item)
                 }
             }

@@ -49,7 +49,7 @@ data class GroundInfoGroup(
 )
 
 data class ReservedGroundInfo(
-    val groundInfo: GroundInfoForList,
+    val stadium: GroundInfoForList,
     val date: String,
     val time: String,
     val userName: String,
@@ -62,8 +62,7 @@ data class ReservedGroundInfoGroup(
 )
 
 data class GroundInfoForList(
-    @SerializedName(value = "id")
-    val stadiumId: Int?,
+    val id: Int?,
     val location: String?,
     val contactPhone: String?,
     val name: String?,
