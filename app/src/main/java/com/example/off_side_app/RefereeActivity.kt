@@ -39,10 +39,15 @@ class RefereeActivity : AppCompatActivity() {
                         .into(binding.pictureImageView)
 
                     // 2. 이름
+
                     binding.userNameText.setText(refereeInfo.name)
-                    binding.userPhoneText.setText(refereeInfo.contactPhone)
+                    var phone = StringBuilder(refereeInfo.contactPhone)
+                    phone.insert(3, "-").insert(8, "-")
+                    binding.userPhoneText.setText(phone.toString())
                     binding.userCommentText.setText(refereeInfo.comment)
-                    binding.userPriceText.setText(refereeInfo.price!!.toString())
+                    var price = refereeInfo.price!!.toString()
+                    price = "$price 원/h"
+                    binding.userPriceText.setText(price)
                 }
                 catch (e: Exception){
                     e.printStackTrace()

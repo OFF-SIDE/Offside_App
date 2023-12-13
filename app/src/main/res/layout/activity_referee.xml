@@ -341,7 +341,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
                 android:layout_width="0dp"
-                android:layout_height="199dp"
+                android:layout_height="210dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pictureImageView">
@@ -355,6 +355,8 @@
                     android:layout_marginEnd="10dp"
                     android:ems="10"
                     android:hint="이름"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -368,7 +370,7 @@
                     android:layout_marginEnd="10dp"
                     android:ems="10"
                     android:hint="주소"
-                    android:textSize="13sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_nameText" />
@@ -381,6 +383,8 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="10dp"
                     android:text="공간 정보"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_addressText" />
@@ -404,29 +408,28 @@
                 <TextView
                     android:id="@+id/user_priceText"
                     android:layout_width="0dp"
-                    android:layout_height="19dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:ems="10"
+                    android:gravity="right"
                     android:hint="가격"
-                    android:textSize="12sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
                     android:id="@+id/user_phoneText"
                     android:layout_width="0dp"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:ems="10"
+                    android:gravity="right"
                     android:hint="전화번호"
-                    android:textSize="10sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/user_priceText"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
@@ -469,14 +472,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/pictureImageView"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:src="@android:drawable/ic_menu_camera"
+                app:civ_border_color="@color/black"
+                app:civ_border_overlay="false"
+                app:civ_border_width="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

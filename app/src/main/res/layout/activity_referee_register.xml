@@ -218,7 +218,7 @@
                     android:layout_marginStart="60dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="60dp"
-                    android:text="금액"
+                    android:text="금액 (원/h)"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     app:layout_constraintBottom_toTopOf="@+id/priceText"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -440,7 +440,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/pictureImageView"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
@@ -448,12 +448,15 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:src="@android:drawable/ic_menu_camera"
+                app:civ_border_color="@color/black"
+                app:civ_border_overlay="false"
+                app:civ_border_width="1dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/selectImageBtn"

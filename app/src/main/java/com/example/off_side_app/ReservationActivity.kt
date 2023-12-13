@@ -57,11 +57,16 @@ class ReservationActivity : AppCompatActivity() {
                     .into(binding.pictureImageView)
 
                 // 2. 이름
+
                 binding.userNameText.setText(groundInfo.name)
+                var phone = StringBuilder(groundInfo.contactPhone)
+                phone.insert(3, "-").insert(8, "-")
                 binding.userPhoneText.setText(groundInfo.contactPhone)
                 binding.userAddressText.setText(groundInfo.address)
                 binding.userCommentText.setText(groundInfo.comment)
-                binding.userPriceText.setText(groundInfo.price!!.toString())
+                var price = groundInfo.price!!.toString()
+                price = "$price 원/h"
+                binding.userPriceText.setText(price)
             }
             catch (e: Exception){
                 e.printStackTrace()

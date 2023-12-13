@@ -47,7 +47,11 @@ class ExternalReservationActivity : AppCompatActivity() {
                     binding.userPhoneText.setText(groundInfo.contactPhone)
                     binding.userAddressText.setText(groundInfo.address)
                     binding.userCommentText.setText(groundInfo.comment)
-                    binding.userPriceText.setText(groundInfo.price!!.toString())
+                    val price = groundInfo.price!!.toString()
+                    if(price == "0")
+                        binding.userPriceText.setText("가격 문의")
+                    else
+                        binding.userPriceText.setText(price)
                 }
                 catch (e: Exception){
                     e.printStackTrace()
