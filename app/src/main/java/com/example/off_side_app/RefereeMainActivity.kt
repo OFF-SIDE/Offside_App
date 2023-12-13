@@ -1,5 +1,6 @@
 package com.example.off_side_app
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.example.off_side_app.data.RefereeInfo
 import com.example.off_side_app.data.RefereeInfoGroup
 import com.example.off_side_app.databinding.ActivityRefreeMainBinding
 import com.example.off_side_app.ui.RefereeMainViewModel
+import java.util.Calendar
 
 class RefereeMainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -23,8 +25,27 @@ class RefereeMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val date = ""
+        var date = ""
         val viewModel = ViewModelProvider(this)[RefereeMainViewModel::class.java]
+
+        val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
+            binding.dateText.text = "${year}/${month}/${day}"
+        }
+
+        binding.dateText.setOnClickListener {
+
+            val cal = Calendar.getInstance()
+            val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                binding.dateText.text = "${year}/${month+1}/${day}"
+                date = "${(year % 100).toString().takeLast(2)}${String.format("%02d", month + 1)}${String.format("%02d", day)}"
+                viewModel.getRefereeData(date)
+                val convertedgroup = DivideGroup(viewModel.result.value!!)
+                refereeMainAdapter.setList(convertedgroup)
+                refereeMainAdapter.notifyDataSetChanged()
+            }
+            DatePickerDialog(this, data, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
 
         // 아이템을 가로로 하나씩 보여줌
         binding.recyclerView.layoutManager = LinearLayoutManager(this,
