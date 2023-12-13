@@ -4,6 +4,7 @@ import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.GroundInfoWithAvailableTime
 import com.example.off_side_app.data.ImageUrl
+import com.example.off_side_app.data.NotificationInfo
 import com.example.off_side_app.data.RefereeDetailInfo
 import com.example.off_side_app.data.RefereeInfo
 import com.example.off_side_app.data.RefereeInfoForPost
@@ -64,4 +65,9 @@ interface GetRefereeDetailApi{
     suspend fun getRefereeDetail(
         @Path("id") stadiumId: Int
     ) : RefereeDetailInfo
+}
+
+interface GetNotificationApi{
+    @GET("noti")
+    suspend fun getNotificationInfo(@Query("contactPhone") contactPhone: String): List<NotificationInfo>
 }

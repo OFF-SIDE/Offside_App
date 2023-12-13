@@ -4,12 +4,14 @@ import com.example.off_side_app.data.GroundInfo
 import com.example.off_side_app.data.GroundInfoForPost
 import com.example.off_side_app.data.GroundInfoWithAvailableTime
 import com.example.off_side_app.data.ImageUrl
+import com.example.off_side_app.data.NotificationInfo
 import com.example.off_side_app.data.RefereeDetailInfo
 import com.example.off_side_app.data.RefereeInfo
 import com.example.off_side_app.data.RefereeInfoForPost
 import com.example.off_side_app.data.ReservedGroundInfo
 import com.example.off_side_app.network.AddGroundApi
 import com.example.off_side_app.network.GetGroundDetailApi
+import com.example.off_side_app.network.GetNotificationApi
 import com.example.off_side_app.network.GetRefereeApi
 import com.example.off_side_app.network.GetRefereeDetailApi
 import com.example.off_side_app.network.GetReservedGroundApi
@@ -28,6 +30,7 @@ class Repository {
     private val getRefereeClient = RetrofitInstance.getInstance().create(GetRefereeApi::class.java)
     private val postRefereeClient = RetrofitInstance.getInstance().create(PostRefereeApi::class.java)
     private val getRefereeDetailClient = RetrofitInstance.getInstance().create(GetRefereeDetailApi::class.java)
+    private val getNotificationClient = RetrofitInstance.getInstance().create(GetNotificationApi::class.java)
 
     suspend fun getGroundData(contactPhone: String, location: String) = getClient.getGroundInfo(contactPhone, location)
     suspend fun postGroundData(groundInfoForPost: GroundInfoForPost): GroundInfo {
@@ -103,6 +106,17 @@ class Repository {
         catch (e:Exception){
             e.printStackTrace()
             return RefereeDetailInfo(1, "", "", "", "", 1, "")
+        }
+    }
+
+    suspend fun getNotificationData(contactPHone: String): List<NotificationInfo> {
+        try{
+            val result = getNotificationClient.getNotificationInfo(contactPHone)
+            return result
+        }
+        catch (e:Exception){
+            e.printStackTrace()
+            return listOf()
         }
     }
 }
