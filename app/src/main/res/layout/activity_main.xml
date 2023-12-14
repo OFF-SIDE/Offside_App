@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/topBarHeight"
-        android:background="#51B187">
+        >
 
         <ImageView
             android:id="@+id/imageView2"
@@ -50,7 +50,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#51B187">
+        >
 
 
         <ImageButton
@@ -84,18 +84,21 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="사용자"
+            android:fontFamily="@font/notosanskr_medium"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.151"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+            />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="구장"
+            android:fontFamily="@font/notosanskr_medium"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"

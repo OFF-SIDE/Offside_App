@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="355dp"
-        android:layout_height="250dp"
+        android:layout_height="210dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,22 +24,18 @@
             <TextView
                 android:id="@+id/userbooking_name"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="예약자 이름"
-                android:textColor="@color/black" />
+                android:layout_height="wrap_content"
+                android:text="예약자 이름" />
 
         </LinearLayout>
 
         <EditText
             android:id="@+id/usernameEdit"
-            android:layout_width="match_parent"
-            android:layout_height="47dp"
+            android:layout_width="130dp"
+            android:layout_height="39dp"
             android:ems="10"
-            android:fontFamily="@font/notosanskr_regular"
-            android:hint="예약명을 입력하세요"
             android:inputType="text"
-            android:textColor="@color/black"
+            android:hint="예약명을 입력하세요"
             android:textSize="13sp" />
 
         <LinearLayout
@@ -50,21 +46,18 @@
             <TextView
                 android:id="@+id/userbooking_pnum"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:text="예약자 전화 번호"
-                android:fontFamily="@font/notosanskr_bold"
-                android:textColor="@color/black"/>
+                android:layout_height="wrap_content"
+                android:text="전화 번호 " />
 
         </LinearLayout>
 
         <EditText
             android:id="@+id/userpnumEdit"
-            android:layout_width="match_parent"
-            android:layout_height="47dp"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:fontFamily="@font/notosanskr_regular"
-            android:hint="전화번호를 입력하세요"
             android:inputType="text"
+            android:hint="전화번호를 입력하세요"
             android:textSize="13sp" />
 
         <EditText
@@ -72,9 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:ems="10"
-            android:fontFamily="@font/notosanskr_regular"
-            android:hint="매칭 시스템을 이용하려면 상대 팀에게 전달할 정보를 적어주세요."
             android:inputType="textMultiLine"
+            android:hint="예약 날짜, 시간, 구장, 주의 사항을 알려주세요."
             android:textSize="12sp" />
 
     </LinearLayout>
@@ -82,39 +74,26 @@
     <Button
         android:id="@+id/userbooking_btn1"
         android:layout_width="80dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:text="예약하기"
-        android:fontFamily="@font/notosanskr_medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/userbooking_btn2"
+        app:layout_constraintEnd_toStartOf="@+id/userbooking_btn3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.622" />
+        app:layout_constraintVertical_bias="0.393" />
 
     <Button
         android:id="@+id/userbooking_btn3"
         android:layout_width="80dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="85dp"
         android:layout_marginEnd="40dp"
         android:text="취소"
-        android:fontFamily="@font/notosanskr_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userbooking_btn2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.623" />
-
-    <Button
-        android:id="@+id/userbooking_btn2"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:text="매칭하기"
-        android:fontFamily="@font/notosanskr_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/userbooking_btn3"
         app:layout_constraintStart_toEndOf="@+id/userbooking_btn1"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.62" />
+        app:layout_constraintVertical_bias="0.393" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

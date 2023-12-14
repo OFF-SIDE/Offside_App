@@ -77,55 +77,7 @@
 
 
                     <Button
-                        android:id="@+id/hour6_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="6:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour7_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="7:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour8_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="8:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-                    <Button
-                        android:id="@+id/hour9_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="9:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour10_btn"
+                        android:id="@+id/hour1000_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -135,12 +87,22 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour11_btn"
+                        android:id="@+id/hour1100_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
                         android:text="11:00"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/hour1200_btn3"
+                        android:layout_width="115dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="12:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -153,17 +115,7 @@
 
 
                     <Button
-                        android:id="@+id/hour12_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="12:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour13_btn"
+                        android:id="@+id/hour1300_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -173,12 +125,22 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour14_btn"
+                        android:id="@+id/hour1400_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
                         android:text="14:00"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/hour1500_btn3"
+                        android:layout_width="115dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="15:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -191,17 +153,7 @@
 
 
                     <Button
-                        android:id="@+id/hour15_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="15:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour16_btn"
+                        android:id="@+id/hour1600_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -211,12 +163,22 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour17_btn"
+                        android:id="@+id/hour1700_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
                         android:text="17:00"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/hour1800_btn3"
+                        android:layout_width="115dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="18:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -229,17 +191,7 @@
 
 
                     <Button
-                        android:id="@+id/hour18_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="18:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour19_btn"
+                        android:id="@+id/hour1900_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -249,7 +201,7 @@
                         android:textSize="15sp" />
 
                     <Button
-                        android:id="@+id/hour20_btn"
+                        android:id="@+id/hour2000_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -258,16 +210,8 @@
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
                     <Button
-                        android:id="@+id/hour21_btn"
+                        android:id="@+id/hour2100_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
@@ -276,26 +220,6 @@
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
-                    <Button
-                        android:id="@+id/hour22_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="22:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour23_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="23:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -305,32 +229,12 @@
 
 
                     <Button
-                        android:id="@+id/hour0_btn"
+                        android:id="@+id/hour2200_btn3"
                         android:layout_width="115dp"
                         android:layout_height="70dp"
                         android:layout_margin="5dp"
                         android:background="@drawable/buttonshape"
-                        android:text="00:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour1_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="1:00"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/hour2_btn"
-                        android:layout_width="115dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="2:00"
+                        android:text="22:00"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -340,8 +244,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
-                android:layout_width="0dp"
-                android:layout_height="210dp"
+                android:layout_width="404dp"
+                android:layout_height="220dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pictureImageView">
@@ -349,28 +253,31 @@
                 <TextView
                     android:id="@+id/user_nameText"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:hint="이름"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/user_addressText"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:hint="주소"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_nameText" />
@@ -378,20 +285,22 @@
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:text="공간 정보"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_addressText" />
 
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
@@ -399,8 +308,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/user_priceText"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -410,10 +318,11 @@
                         <TextView
                             android:id="@+id/user_commentText"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="100dp"
                             android:ems="10"
+                            android:fontFamily="@font/notosanskr_regular"
                             android:hint="공지사항"
-                            android:textSize="13dp"
+                            android:textSize="14dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -422,29 +331,34 @@
 
                 <TextView
                     android:id="@+id/user_priceText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="130dp"
+                    android:layout_height="35dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:gravity="right"
                     android:hint="가격"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
                     android:id="@+id/user_phoneText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="130dp"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:gravity="right"
                     android:hint="전화번호"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_priceText"
+                    app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
@@ -466,9 +380,12 @@
                 android:layout_width="127dp"
                 android:layout_height="47dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/buttonshape"
                 android:text="날짜"
+                android:fontFamily="@font/notosanskr_medium"
                 android:textColor="#000000"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
@@ -497,7 +414,8 @@
                 app:civ_border_width="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

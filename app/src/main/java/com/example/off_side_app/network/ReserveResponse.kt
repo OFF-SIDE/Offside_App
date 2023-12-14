@@ -42,3 +42,18 @@ data class ReservationRequest2(
     val userPhone: String,
 )
 
+data class RefereeRequest(
+    val refereeId: Int,
+    val date :String,
+    val time: String,
+    val userPhone: String,
+    val userName: String,
+    val comment: String
+)
+
+data class RefereeRequest2(
+    val refereeId: Int,
+    val date: String,
+    val availableTime: List<String>
+)
+

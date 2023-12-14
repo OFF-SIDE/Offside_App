@@ -37,7 +37,10 @@ import com.example.off_side_app.network.ReserveViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class ReservationActivity : AppCompatActivity() {
 
@@ -105,6 +108,45 @@ class ReservationActivity : AppCompatActivity() {
         binding.reservationBackBtn.setOnClickListener {
             finish()
         }
+
+        val currentDate = Date()
+
+        // SimpleDateFormat을 사용하여 원하는 형식으로 날짜를 포맷팅
+        val dateFormat = SimpleDateFormat("yyMMdd", Locale.getDefault())
+        val formattedDate = dateFormat.format(currentDate)
+
+        viewModel2.fetchDataAndChangeButtonBackground1(
+            stadiumId = currentStadiumId,
+            date = formattedDate,
+            onSuccess = {
+                // 성공 시 reserveData를 사용하는 예시
+                viewModel2.reservationListData.observe(
+                    this@ReservationActivity
+                ) { reservationList ->
+                    // reservationList에 접근하는 부분 예시
+                    Log.d("ReservationActivity", "Reservation List Observer Called: $reservationList")
+
+                    // 성공 시 matchingQData를 사용하는 예시
+                    viewModel2.matchingQData.observe(
+                        this@ReservationActivity
+                    ) { matchingQData ->
+                        // matchingQData에 접근하는 부분 예시
+                        Log.d("ReservationActivity", "MatchingQ List Observer Called: $matchingQData")
+
+                        // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                        updateUI(reservationList, matchingQData, currentStadiumId, formattedDate)
+                    }
+                }
+            },
+            onError = { exception ->
+                // 실패 시 처리
+                Log.e("ReservationActivity", "Error: $exception")
+            }
+        )
+
+        val dateFormat2 = SimpleDateFormat("yy/MM/dd", Locale.getDefault())
+        val formattedDate2 = dateFormat2.format(currentDate)
+        binding.daySelectBtn.text = "$formattedDate2"
 
 
         binding.daySelectBtn.setOnClickListener {
@@ -242,7 +284,7 @@ class ReservationActivity : AppCompatActivity() {
 
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("예약 정보")
+
 
         val  mAlertDialog = mBuilder.show()
 
@@ -267,6 +309,34 @@ class ReservationActivity : AppCompatActivity() {
                     } finally {
                         // 예약 생성 성공 여부와 상관없이 대화상자 닫기
                         mAlertDialog.dismiss()
+                        viewModel2.fetchDataAndChangeButtonBackground1(
+                            stadiumId = stadiumId,
+                            date = date,
+                            onSuccess = {
+                                // 성공 시 reserveData를 사용하는 예시
+                                viewModel2.reservationListData.observe(
+                                    this@ReservationActivity
+                                ) { reservationList ->
+                                    // reservationList에 접근하는 부분 예시
+                                    Log.d("ReservationActivity", "Reservation List Observer Called: $reservationList")
+
+                                    // 성공 시 matchingQData를 사용하는 예시
+                                    viewModel2.matchingQData.observe(
+                                        this@ReservationActivity
+                                    ) { matchingQData ->
+                                        // matchingQData에 접근하는 부분 예시
+                                        Log.d("ReservationActivity", "MatchingQ List Observer Called: $matchingQData")
+
+                                        // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                                        updateUI(reservationList, matchingQData, stadiumId, date)
+                                    }
+                                }
+                            },
+                            onError = { exception ->
+                                // 실패 시 처리
+                                Log.e("ReservationActivity", "Error: $exception")
+                            }
+                        )
                     }
                 }
             } else {
@@ -274,6 +344,9 @@ class ReservationActivity : AppCompatActivity() {
                 // 사용자에게 이름과 전화번호를 입력하라는 메시지를 보여줄 수 있음
             }
             mAlertDialog.dismiss()
+
+
+
         }
 
         val matchingButton = mDialogView.findViewById<Button>(R.id.usermatcing_btn2)
@@ -299,6 +372,34 @@ class ReservationActivity : AppCompatActivity() {
                     } finally {
                         // 예약 생성 성공 여부와 상관없이 대화상자 닫기
                         mAlertDialog.dismiss()
+                        viewModel2.fetchDataAndChangeButtonBackground1(
+                            stadiumId = stadiumId,
+                            date = date,
+                            onSuccess = {
+                                // 성공 시 reserveData를 사용하는 예시
+                                viewModel2.reservationListData.observe(
+                                    this@ReservationActivity
+                                ) { reservationList ->
+                                    // reservationList에 접근하는 부분 예시
+                                    Log.d("ReservationActivity", "Reservation List Observer Called: $reservationList")
+
+                                    // 성공 시 matchingQData를 사용하는 예시
+                                    viewModel2.matchingQData.observe(
+                                        this@ReservationActivity
+                                    ) { matchingQData ->
+                                        // matchingQData에 접근하는 부분 예시
+                                        Log.d("ReservationActivity", "MatchingQ List Observer Called: $matchingQData")
+
+                                        // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                                        updateUI(reservationList, matchingQData, stadiumId, date)
+                                    }
+                                }
+                            },
+                            onError = { exception ->
+                                // 실패 시 처리
+                                Log.e("ReservationActivity", "Error: $exception")
+                            }
+                        )
                     }
                 }
             } else {
@@ -306,6 +407,8 @@ class ReservationActivity : AppCompatActivity() {
                 // 사용자에게 이름과 전화번호를 입력하라는 메시지를 보여줄 수 있음
             }
             mAlertDialog.dismiss()
+
+
         }
 
         val noButton = mDialogView.findViewById<Button>(R.id.usermatcing_btn3)
@@ -319,7 +422,6 @@ class ReservationActivity : AppCompatActivity() {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.user_booking_info_dialog, null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-            .setTitle("예약 정보")
 
         lateinit var userNameEditText: EditText
         lateinit var userPhoneEditText: EditText
@@ -358,6 +460,34 @@ class ReservationActivity : AppCompatActivity() {
                     } finally {
                         // 예약 생성 성공 여부와 상관없이 대화상자 닫기
                         mAlertDialog.dismiss()
+                        viewModel2.fetchDataAndChangeButtonBackground1(
+                            stadiumId = stadiumId,
+                            date = date,
+                            onSuccess = {
+                                // 성공 시 reserveData를 사용하는 예시
+                                viewModel2.reservationListData.observe(
+                                    this@ReservationActivity
+                                ) { reservationList ->
+                                    // reservationList에 접근하는 부분 예시
+                                    Log.d("ReservationActivity", "Reservation List Observer Called: $reservationList")
+
+                                    // 성공 시 matchingQData를 사용하는 예시
+                                    viewModel2.matchingQData.observe(
+                                        this@ReservationActivity
+                                    ) { matchingQData ->
+                                        // matchingQData에 접근하는 부분 예시
+                                        Log.d("ReservationActivity", "MatchingQ List Observer Called: $matchingQData")
+
+                                        // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                                        updateUI(reservationList, matchingQData, stadiumId, date)
+                                    }
+                                }
+                            },
+                            onError = { exception ->
+                                // 실패 시 처리
+                                Log.e("ReservationActivity", "Error: $exception")
+                            }
+                        )
                     }
                 }
             } else {
@@ -390,6 +520,34 @@ class ReservationActivity : AppCompatActivity() {
                     } finally {
                         // 예약 생성 성공 여부와 상관없이 대화상자 닫기
                         mAlertDialog.dismiss()
+                        viewModel2.fetchDataAndChangeButtonBackground1(
+                            stadiumId = stadiumId,
+                            date = date,
+                            onSuccess = {
+                                // 성공 시 reserveData를 사용하는 예시
+                                viewModel2.reservationListData.observe(
+                                    this@ReservationActivity
+                                ) { reservationList ->
+                                    // reservationList에 접근하는 부분 예시
+                                    Log.d("ReservationActivity", "Reservation List Observer Called: $reservationList")
+
+                                    // 성공 시 matchingQData를 사용하는 예시
+                                    viewModel2.matchingQData.observe(
+                                        this@ReservationActivity
+                                    ) { matchingQData ->
+                                        // matchingQData에 접근하는 부분 예시
+                                        Log.d("ReservationActivity", "MatchingQ List Observer Called: $matchingQData")
+
+                                        // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                                        updateUI(reservationList, matchingQData, stadiumId, date)
+                                    }
+                                }
+                            },
+                            onError = { exception ->
+                                // 실패 시 처리
+                                Log.e("ReservationActivity", "Error: $exception")
+                            }
+                        )
                     }
                 }
             } else {

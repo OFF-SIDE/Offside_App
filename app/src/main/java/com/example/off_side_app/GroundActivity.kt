@@ -23,8 +23,15 @@ import com.example.off_side_app.network.ReserveConnectionApi
 import com.example.off_side_app.network.ReserveViewModel
 import com.example.off_side_app.ui.GroundViewModel
 import com.example.off_side_app.ui.LoadingDialog
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.text.SimpleDateFormat
 
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class GroundActivity : AppCompatActivity() {
 
@@ -96,6 +103,56 @@ class GroundActivity : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             finish()
         }
+
+        val currentDate = Date()
+
+        // SimpleDateFormat을 사용하여 원하는 형식으로 날짜를 포맷팅
+        val dateFormat = SimpleDateFormat("yyMMdd", Locale.getDefault())
+        val formattedDate = dateFormat.format(currentDate)
+
+        viewModel2.fetchDataAndChangeButtonBackground1(
+            stadiumId = currentStadiumId,
+            date = formattedDate,
+            onSuccess = {
+                // 성공 시 reserveData를 사용하는 예시
+                viewModel2.reservationListData.observe(
+                    this@GroundActivity
+                ) { reservationList ->
+                    // reservationList에 접근하는 부분 예시
+                    Log.d(
+                        "ReservationActivity",
+                        "Reservation List Observer Called: $reservationList"
+                    )
+
+                    // 성공 시 matchingQData를 사용하는 예시
+                    viewModel2.matchingQData.observe(
+                        this@GroundActivity
+                    ) { matchingQData ->
+                        // matchingQData에 접근하는 부분 예시
+                        Log.d(
+                            "ReservationActivity",
+                            "MatchingQ List Observer Called: $matchingQData"
+                        )
+
+                        // 여기서 matchingQData와 reservationList를 사용하여 UI를 업데이트하는 로직을 추가할 수 있음
+                        updateUI(
+                            reservationList,
+                            matchingQData,
+                            currentStadiumId,
+                            formattedDate
+                        )
+                    }
+                }
+            },
+            onError = { exception ->
+                // 실패 시 처리
+                Log.e("ReservationActivity", "Error: $exception")
+            }
+        )
+
+        val dateFormat2 = SimpleDateFormat("yy/MM/dd", Locale.getDefault())
+        val formattedDate2 = dateFormat2.format(currentDate)
+        binding.daySelectBtn.text = "$formattedDate2"
 
         binding.daySelectBtn.setOnClickListener {
 
@@ -254,7 +311,6 @@ class GroundActivity : AppCompatActivity() {
 
             val mBuilder = AlertDialog.Builder(this)
                 .setView(mDialogView)
-                .setTitle("예약 정보")
 
             val mAlertDialog = mBuilder.show()
 

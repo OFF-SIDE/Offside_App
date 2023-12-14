@@ -60,9 +60,11 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
-                android:layout_width="0dp"
-                android:layout_height="199dp"
+                android:layout_width="385dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.538"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pictureImageView">
 
@@ -71,11 +73,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="10dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:hint="이름"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,9 +91,11 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:hint="주소"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_nameText" />
 
@@ -98,10 +104,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:text="공간 정보"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_addressText" />
 
@@ -115,8 +123,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/user_priceText"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -126,8 +133,9 @@
                         <TextView
                             android:id="@+id/user_commentText"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="91dp"
                             android:ems="10"
+                            android:fontFamily="@font/notosanskr_regular"
                             android:hint="공지사항"
                             android:textSize="13dp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -138,24 +146,26 @@
 
                 <TextView
                     android:id="@+id/user_priceText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:gravity="right"
                     android:hint="가격"
                     android:textSize="14sp"
-                    android:gravity="right"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
                     android:id="@+id/user_phoneText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="28dp"
                     android:ems="10"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:gravity="right"
                     android:hint="전화번호"
                     android:textSize="14sp"
@@ -164,37 +174,24 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/saveBtn"
-                android:layout_width="100dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/buttonshape"
-                android:text="저장"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.75"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
-
-            <Button
                 android:id="@+id/backBtn"
                 android:layout_width="100dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/buttonshape"
                 android:text="뒤로가기"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
                 android:id="@+id/pictureImageView"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_width="403dp"
+                android:layout_height="171dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -205,8 +202,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
@@ -214,9 +213,11 @@
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:text="해당 구장은 현재 KICK-OFF에 등록되어 있지 않습니다."
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.507"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -225,10 +226,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginTop="13dp"
+                    android:fontFamily="@font/notosanskr_regular"
                     android:text="구장 사이트 방문하기"
                     android:textColor="@android:color/holo_green_dark"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView11" />
             </androidx.constraintlayout.widget.ConstraintLayout>

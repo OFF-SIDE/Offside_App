@@ -17,6 +17,9 @@ class ReserveViewModel : ViewModel() {
     private val _reservationListData = MutableLiveData<List<String>>()
     val reservationListData: LiveData<List<String>> get() = _reservationListData
 
+    private val _refereeTimeData = MutableLiveData<List<String>>()
+    val refereeTimeData: LiveData<List<String>> get() = _refereeTimeData
+
     private val _username = MutableLiveData<String>()
     val username: LiveData<String> get() = _username
 
@@ -32,12 +35,45 @@ class ReserveViewModel : ViewModel() {
     private val _matchinginfo = MutableLiveData<String>()
     val matchinginfo: LiveData<String> get() = _matchinginfo
 
+
     suspend fun getReserveData1(stadiumId: Int, date: String): ReserveResponse? {
         return try {
             ReserveConnectionApi.reserveApi.getReserveInfo1(stadiumId, date)
         } catch (e: Exception) {
             // 네트워크 호출 중 예외가 발생한 경우 처리
             // 예를 들어, 로깅 또는 사용자에게 알림 표시 등의 작업 추가
+            null // 예외 발생 시 null을 반환하거나 다른 적절한 방식으로 처리
+        }
+    }
+
+    suspend fun getMathingData(stadiumId: Int, date: String, time: String): MatchingConfirmRequest? {
+        return try {
+            reserveApi.successMatching(stadiumId, date, time)
+        } catch (e: Exception) {
+            // 네트워크 호출 중 예외가 발생한 경우 처리
+            // 예를 들어, 로깅 또는 사용자에게 알림 표시 등의 작업 추가
+            null // 예외 발생 시 null을 반환하거나 다른 적절한 방식으로 처리
+        }
+    }
+
+    suspend fun getReserveData2(stadiumId: Int, date: String, time: String): ReservationRequest2? {
+        return try {
+            reserveApi.getReserveInfo2(stadiumId, date, time)
+        } catch (e: Exception) {
+            // 네트워크 호출 중 예외가 발생한 경우 처리
+            // 예를 들어, 로깅 또는 사용자에게 알림 표시 등의 작업 추가
+            Log.e("NetworkError", "Error fetching data", e)
+            null // 예외 발생 시 null을 반환하거나 다른 적절한 방식으로 처리
+        }
+    }
+
+    suspend fun getRefereeData(refereeId: Int, date: String): RefereeRequest2?{
+        return try {
+            reserveApi.getRefereeInfo(refereeId, date)
+        } catch (e: Exception) {
+            // 네트워크 호출 중 예외가 발생한 경우 처리
+            // 예를 들어, 로깅 또는 사용자에게 알림 표시 등의 작업 추가
+            Log.e("NetworkError", "Error fetching data", e)
             null // 예외 발생 시 null을 반환하거나 다른 적절한 방식으로 처리
         }
     }
@@ -72,28 +108,12 @@ class ReserveViewModel : ViewModel() {
         _matchinginfo.value = matchinginfo
     }
 
-    suspend fun getMathingData(stadiumId: Int, date: String, time: String): MatchingConfirmRequest? {
-        return try {
-            reserveApi.successMatching(stadiumId, date, time)
-        } catch (e: Exception) {
-            // 네트워크 호출 중 예외가 발생한 경우 처리
-            // 예를 들어, 로깅 또는 사용자에게 알림 표시 등의 작업 추가
-            null // 예외 발생 시 null을 반환하거나 다른 적절한 방식으로 처리
-        }
+    private fun setRefreeData(refreeRequest2: RefereeRequest2?) {
+        // ReserveResponse가 null이면 빈 리스트를 설정
+        val availabletime = refreeRequest2?.availableTime.orEmpty()
+
+        _refereeTimeData.value = availabletime
     }
-
-    suspend fun getReserveData2(stadiumId: Int, date: String, time: String): ReservationRequest2? {
-        return try {
-            reserveApi.getReserveInfo2(stadiumId, date, time)
-        } catch (e: Exception) {
-            // 네트워크 호출 중 예외가 발생한 경우 처리
-            // 예를 들어, 로깅 또는 사용자에게 알림 표시 등의 작업 추가
-            Log.e("NetworkError", "Error fetching data", e)
-            null // 예외 발생 시 null을 반환하거나 다른 적절한 방식으로 처리
-        }
-    }
-
-
 
     // LiveData를 사용하여 데이터를 변경하도록 수정
     fun fetchDataAndChangeButtonBackground1(
@@ -148,6 +168,26 @@ class ReserveViewModel : ViewModel() {
             try {
                 val matchingData = getMathingData(stadiumId, date, time)
                 setMatchingData(matchingData)
+
+                // 성공 콜백 호출
+                onSuccess()
+            } catch (e: Exception) {
+                // 네트워크 호출 중 예외 발생 시 처리
+                onError(e)
+            }
+        }
+    }
+
+    fun fetchDataAndChangeButtonBackground_r(
+        refereeId: Int,
+        date: String,
+        onSuccess: () -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        viewModelScope.launch(Dispatchers.Main) {
+            try {
+                val refereedata = getRefereeData(refereeId, date)
+                setRefreeData(refereedata)
 
                 // 성공 콜백 호출
                 onSuccess()

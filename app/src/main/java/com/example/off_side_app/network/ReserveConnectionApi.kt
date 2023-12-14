@@ -76,11 +76,49 @@ class ReserveConnectionApi {
             // 실패한 경우의 처리
         }
     }
+
+    suspend fun createRefereeData(
+        refereeId: Int,
+        date :String,
+        time: String,
+        userPhone: String,
+        userName: String,
+        comment: String
+    ){
+        // 예약 정보를 생성
+        val refereeRequest = RefereeRequest(
+            refereeId = refereeId,
+            comment = comment,
+            date = date,
+            time = time,
+            userName = userName,
+            userPhone = userPhone
+        )
+
+        // API 호출
+        try {
+            reserveApi.createRefereeData(refereeRequest)
+            // 성공적으로 예약이 생성된 경우의 처리
+        } catch (e: Exception) {
+            // 네트워크 호출 중 예외 발생 시 처리
+            e.printStackTrace()
+            // 실패한 경우의 처리
+        }
+    }
 }
 
 interface ReserveApi{
     @GET("/stadium/reservation")
     suspend fun getReserveInfo1(@Query("stadiumId") stadiumId: Int, @Query("date") date: String): ReserveResponse
+
+    @GET("/stadium/matching")
+    suspend fun successMatching(@Query("stadiumId") stadiumId: Int, @Query("date") date: String, @Query("time") time: String): MatchingConfirmRequest
+
+    @GET("stadium/reservation/user")
+    suspend fun getReserveInfo2(@Query("stadiumId") stadiumId: Int, @Query("date") date: String, @Query("time") time: String): ReservationRequest2
+
+    @GET("/referee/reservation")
+    suspend fun getRefereeInfo(@Query("refereeId") refereeId: Int, @Query("date") date: String): RefereeRequest2
 
     @POST("/stadium/reservation")
     suspend fun createReservation(@Body request: ReservationRequest)
@@ -88,11 +126,9 @@ interface ReserveApi{
     @POST("/stadium/matching")
     suspend fun createMatching(@Body request: MatchingRequest)
 
-    @GET("/stadium/matching")
-    suspend fun successMatching(@Query("stadiumId") stadiumId: Int, @Query("date") date: String, @Query("time") time: String): MatchingConfirmRequest
+    @POST("/referee/reservation")
+    suspend fun  createRefereeData(@Body request: RefereeRequest)
 
-    @GET("stadium/reservation/user")
-    suspend fun getReserveInfo2(@Query("stadiumId") stadiumId: Int, @Query("date") date: String, @Query("time") time: String): ReservationRequest2
 }
 
 
