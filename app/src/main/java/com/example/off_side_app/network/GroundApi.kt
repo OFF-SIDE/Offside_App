@@ -40,7 +40,7 @@ interface GetGroundDetailApi{
     @GET("stadium/{stadiumId}")
     suspend fun getGroundDetail(
         @Path("stadiumId") stadiumId: Int,
-        @Query("date") date: Int
+        @Query("date") date: Int?
     ) : GroundInfoWithAvailableTime
 }
 

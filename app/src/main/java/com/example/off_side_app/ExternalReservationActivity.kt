@@ -25,10 +25,11 @@ class ExternalReservationActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this)[GroundViewModel::class.java]
 
         val currentStadiumId = intent.getIntExtra("stadiumId", -1)
+        val externalUrl = intent.getStringExtra("externalUrl")
 
         if(currentStadiumId != -1){
             // 기존 구장의 경우 기존 정보로 텍스트 채우기
-            viewModel.getGroundDetailData(currentStadiumId, 1210)  // 오늘 날짜로
+            viewModel.getGroundDetailData(currentStadiumId, null)  // 오늘 날짜로
             val dialog = LoadingDialog(this@ExternalReservationActivity)
 
             dialog.show()
@@ -65,8 +66,8 @@ class ExternalReservationActivity : AppCompatActivity() {
         }
 
         binding.visitExternalPage.setOnClickListener {
-            val url = "https://cyber.sogang.ac.kr/ilos/main/main_form.acl"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            //externalUrl = "https://cyber.sogang.ac.kr/ilos/main/main_form.acl"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(externalUrl))
             startActivity(intent)
         }
 

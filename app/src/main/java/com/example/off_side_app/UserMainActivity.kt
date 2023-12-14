@@ -35,8 +35,10 @@ class UserMainActivity : AppCompatActivity() {
             val intent: Intent
             if(externalUrl == "")
                 intent = Intent(this@UserMainActivity, ReservationActivity::class.java)
-            else
+            else {
                 intent = Intent(this@UserMainActivity, ExternalReservationActivity::class.java)
+                intent.putExtra("externalUrl", externalUrl)
+            }
 
             intent.putExtra("stadiumId", stadiumId)
             startActivity(intent)
@@ -72,6 +74,11 @@ class UserMainActivity : AppCompatActivity() {
 
         binding.reservedGroundBtn.setOnClickListener {
             val intent = Intent(this@UserMainActivity, UserReservationCheckActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.notificationButton.setOnClickListener {
+            val intent = Intent(this@UserMainActivity, NotificationActivity::class.java)
             startActivity(intent)
         }
     }

@@ -1,5 +1,6 @@
 package com.example.off_side_app
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -35,6 +36,7 @@ class RefereeActivity : AppCompatActivity() {
                     // 1. 이미지
                     Glide.with(binding.pictureImageView)
                         .load(refereeInfo.image)
+                        .circleCrop()
                         .error(R.drawable.baseline_error_24)
                         .into(binding.pictureImageView)
 

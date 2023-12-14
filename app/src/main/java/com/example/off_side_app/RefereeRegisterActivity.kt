@@ -131,6 +131,7 @@ class RefereeRegisterActivity : AppCompatActivity() {
             uri = result.data!!.data
             Glide.with(this)
                 .load(uri)
+                .circleCrop()
                 .into(binding.pictureImageView)
         }
     }

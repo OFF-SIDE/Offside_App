@@ -25,8 +25,8 @@ class GroundMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var contactPhone = ""
-        //contactPhone = AppDataManager.phoneNumber!!
+        //var contactPhone = ""
+        var contactPhone = AppDataManager.phoneNumber!!
         val location = ""
         val viewModel = ViewModelProvider(this)[GroundMainViewModel::class.java]
 

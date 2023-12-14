@@ -54,7 +54,7 @@ class Repository {
         }
     }
 
-    suspend fun getGroundDetail(stadiumId: Int, date: Int): GroundInfoWithAvailableTime {
+    suspend fun getGroundDetail(stadiumId: Int, date: Int?): GroundInfoWithAvailableTime {
         try {
             val result = getDetailClient.getGroundDetail(stadiumId, date)
             return result

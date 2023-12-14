@@ -36,7 +36,7 @@ class GroundViewModel: ViewModel() {
         }
     }
 
-    fun getGroundDetailData(stadiumId: Int, date: Int) = viewModelScope.launch {
+    fun getGroundDetailData(stadiumId: Int, date: Int?) = viewModelScope.launch {
         try{
             val ground: GroundInfoWithAvailableTime = repository.getGroundDetail(stadiumId, date)
             _detail.value = ground

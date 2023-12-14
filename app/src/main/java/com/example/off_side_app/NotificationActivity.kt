@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.off_side_app.Adapter.NotificationMainAdapter
+import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.databinding.ActivityNotificationBinding
 import com.example.off_side_app.ui.NotificationViewModel
 
@@ -18,7 +19,9 @@ class NotificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var contactPhone = "01028994421"
+        var contactPhone = AppDataManager.phoneNumber!!
+
+        //var contactPhone = "01028994421"
         val viewModel = ViewModelProvider(this)[NotificationViewModel::class.java]
 
         // 아이템을 가로로 하나씩 보여줌

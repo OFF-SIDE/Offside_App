@@ -1,18 +1,13 @@
 package com.example.off_side_app
 
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -23,17 +18,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.off_side_app.data.AppDataManager
 import com.example.off_side_app.data.GroundInfoForPost
-import com.example.off_side_app.data.ImageUtil
 import com.example.off_side_app.databinding.ActivityGroundBinding
 import com.example.off_side_app.network.ReserveConnectionApi
 import com.example.off_side_app.network.ReserveViewModel
-import com.example.off_side_app.ui.GroundMainViewModel
 import com.example.off_side_app.ui.GroundViewModel
 import com.example.off_side_app.ui.LoadingDialog
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import java.io.File
+
 import java.util.Calendar
 
 class GroundActivity : AppCompatActivity() {
@@ -70,7 +60,7 @@ class GroundActivity : AppCompatActivity() {
 
         if(currentStadiumId != -1){
             // 기존 구장의 경우 기존 정보로 텍스트 채우기
-            viewModel.getGroundDetailData(currentStadiumId, 1210)  // 오늘 날짜로
+            viewModel.getGroundDetailData(currentStadiumId, null)  // 오늘 날짜로
             val dialog = LoadingDialog(this@GroundActivity)
 
             dialog.show()
